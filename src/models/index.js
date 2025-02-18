@@ -3,6 +3,7 @@ const sequelize = require('../config/database');
 
 // Importação dos modelos
 const Usuario = require('./Usuario');
+const UsuarioStatus = require('./UsuarioStatus');
 const Filial = require('./Filial');
 const Categoria = require('./Categoria');
 const Modelo = require('./Modelo');
@@ -19,6 +20,14 @@ const TermoGerado = require('./TermoGerado');
 
 
 // Definição de relacionamentos
+
+// Usuários e Status
+Usuario.belongsTo(UsuarioStatus, {
+  foreignKey: 'status_id'
+});
+UsuarioStatus.hasMany(Usuario, {
+  foreignKey: 'status_id'
+});
 
 // Usuarios e Filiais
 Usuario.belongsTo(Filial, {
@@ -143,6 +152,7 @@ Termo.hasMany(TermoGerado, {
 // Array de modelos para facilitar a sincronização
 const models = {
   Usuario,
+  UsuarioStatus,
   Filial,
   Categoria,
   Modelo,
