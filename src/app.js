@@ -6,12 +6,6 @@ const errorHandler = require('./middlewares/errorMiddleware');
 // Para leitura de JSON no body das requisições
 app.use(express.json());
 
-// Middleware de log (caso tenha)
-const {
-  logger
-} = require('./middlewares');
-if (logger) app.use(logger);
-
 // Definição das rotas principais
 app.use('/api', routes);
 
