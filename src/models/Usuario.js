@@ -33,14 +33,6 @@ const Usuario = sequelize.define('Usuario', {
     type: DataTypes.STRING(255),
     allowNull: false
   },
-  telefone: {
-    type: DataTypes.STRING(20),
-    allowNull: true,
-    validate: {
-      is: /^[0-9()+\- ]*$/, // Permite apenas números, parênteses, traços e espaços
-      len: [8, 20]
-    }
-  },
   status: {
     type: DataTypes.ENUM('ativo', 'inativo', 'pendente'),
     allowNull: false,
