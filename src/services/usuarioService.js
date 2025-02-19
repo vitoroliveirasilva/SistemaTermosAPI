@@ -1,4 +1,5 @@
 const usuarioRepository = require('../repositories/usuarioRepository');
+const filialRepository = require('../repositories/filialRepository');
 const {
     validarDados
 } = require('../utils/validator');
