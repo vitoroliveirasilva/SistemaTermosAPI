@@ -33,6 +33,9 @@ class FilialController {
             const filial = await filialService.buscarPorId(req.params.id);
             return res.json(filial);
         } catch (error) {
+            if (error.status === 404) {
+                return res.status(404).json({ erro: error.message });
+            }
             next(error);
         }
     }
