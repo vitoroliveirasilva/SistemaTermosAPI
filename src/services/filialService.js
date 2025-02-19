@@ -31,7 +31,22 @@ class FilialService {
     }
 
     async atualizar(id, dados) {
+        // Verifica se existe filial com o ID informado
+        const filialAtual = await this.buscarPorId(id);
+
+        // Valida os dados do body
         validarDados(dados, filialSchema);
+
+        // Verifica se houve alguma alteração nos dados
+        const camposAlterados = Object.keys(dados).some(campo => dados[campo] !== filialAtual[campo]);
+
+        if (!camposAlterados) {
+            return {
+                status: 200,
+                message: 'Nenhuma alteração foi feita nos dados da filial.'
+            };
+        }
+
         return await filialRepository.atualizar(id, dados);
     }
 
