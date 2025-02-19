@@ -34,8 +34,12 @@ class FilialService {
     }
 
     async buscarPorId(id) {
-        return await filialRepository.buscarPorId(id);
-    }
+        const filial = await filialRepository.buscarPorId(id);
+        if (!filial) {
+            throw { status: 404, message: `Filial com ID ${id} não encontrada.` };
+        }
+        return filial;
+    }    
 
     async atualizar(id, dados) {
         validarDados(dados, filialSchema);
