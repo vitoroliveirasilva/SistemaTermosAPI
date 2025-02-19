@@ -1,7 +1,7 @@
-const errorHandler = require('./errorMiddleware');
-const validarId = require('./validarIdMiddleware');
+const validarId = require('./validacao/validarIdMiddleware');
+const errorHandler = require('./errorHandler');
 
 module.exports = {
-  errorHandler,
-  validarId
+  validarId,
+  errorHandler
 };
