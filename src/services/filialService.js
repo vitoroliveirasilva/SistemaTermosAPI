@@ -1,10 +1,10 @@
 const filialRepository = require('../repositories/filialRepository');
 const {
     validarDados
-} = require('../utils/validator');
+} = require('../utils');
 const {
     filialSchema
-} = require('../validations/filialSchema');
+} = require('../validations');
 
 
 class FilialService {

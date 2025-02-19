@@ -2,11 +2,11 @@ const usuarioRepository = require('../repositories/usuarioRepository');
 const filialRepository = require('../repositories/filialRepository');
 const {
     validarDados
-} = require('../utils/validator');
+} = require('../utils');
 const {
     usuarioSchema,
     usuarioUpdateSchema
-} = require('../validations/usuarioSchema');
+} = require('../validations');
 const bcrypt = require('bcrypt');
 const {
     or
