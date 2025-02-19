@@ -41,6 +41,34 @@ class UsuarioService {
     async remover(id) {
         return await usuarioRepository.remover(id);
     }
+
+    async vincularFilial(idUsuario, idFilial) {
+        try {
+            if (!idUsuario || isNaN(idUsuario) || idUsuario <= 0) {
+                throw new Error("ID do usuário inválido.");
+            }
+
+            if (!idFilial || isNaN(idFilial) || idFilial <= 0) {
+                throw new Error("ID da filial inválido.");
+            }
+
+            const usuario = await usuarioRepository.buscarPorId(idUsuario);
+            if (!usuario) {
+                throw new Error("Usuário não encontrado.");
+            }
+
+            const filial = await filialRepository.buscarPorId(idFilial);
+            if (!filial) {
+                throw new Error("Filial não encontrada.");
+            }
+
+            return await usuarioRepository.vincularFilial(idUsuario, idFilial);
+        } catch (error) {
+            console.error(`Erro ao vincular usuário ${idUsuario} à filial ${idFilial}:`, error);
+            throw new Error("Erro ao vincular filial ao usuário.");
+        }
+    }
+
 }
 
 module.exports = new UsuarioService();
