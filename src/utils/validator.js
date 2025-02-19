@@ -9,7 +9,8 @@ function validarDados(dados, schema) {
         error,
         value
     } = schema.validate(dados, {
-        abortEarly: false
+        abortEarly: false,
+        stripUnknown: true
     });
 
     if (error) {
