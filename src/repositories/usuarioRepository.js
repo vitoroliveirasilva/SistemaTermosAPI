@@ -34,12 +34,8 @@ class UsuarioRepository {
     }
 
     try {
-      const usuario = await Usuario.findByPk(id, {
-        rejectOnEmpty: false
-      });
-      if (!usuario) return null;
-
-      return this.#removerSenha(usuario);
+      const usuario = await Usuario.findByPk(id);
+      return usuario ? this.#removerSenha(usuario) : null;
     } catch (error) {
       console.error(`Erro ao buscar usuário com ID ${id}:`, error);
       throw new Error("Erro ao buscar usuário.");
@@ -81,12 +77,14 @@ class UsuarioRepository {
       throw new Error("ID inválido.");
     }
 
-    const usuario = await this.buscarPorId(id);
-    if (!usuario) return null;
-
     try {
-      const usuarioAtualizado = await usuario.update(dados);
-      return this.#removerSenha(usuarioAtualizado);
+      const [atualizados] = await Usuario.update(dados, {
+        where: {
+          id
+        }
+      });
+      if (!atualizados) return null;
+      return await this.buscarPorId(id);
     } catch (error) {
       console.error(`Erro ao atualizar usuário com ID ${id}:`, error);
       throw new Error("Erro ao atualizar usuário.");
@@ -98,14 +96,16 @@ class UsuarioRepository {
       throw new Error("ID inválido.");
     }
 
-    const usuario = await this.buscarPorId(id);
-    if (!usuario) return null;
-
     try {
-      await usuario.update({
+      const [atualizados] = await Usuario.update({
         status: 'inativo'
+      }, {
+        where: {
+          id
+        }
       });
-      return this.#removerSenha(usuario);
+      if (!atualizados) return null;
+      return await this.buscarPorId(id);
     } catch (error) {
       console.error(`Erro ao remover usuário com ID ${id}:`, error);
       throw new Error("Erro ao remover usuário.");
