@@ -7,7 +7,7 @@
 
 /**
  * @swagger
- * /api/filiais/:
+ * /api/filiais:
  *   get:
  *     summary: Lista todas as filiais
  *     tags: [Filiais]
@@ -68,7 +68,7 @@
 
 /**
  * @swagger
- * /api/filiais/:
+ * /api/filiais:
  *   post:
  *     summary: Cria uma nova filial
  *     tags: [Filiais]
