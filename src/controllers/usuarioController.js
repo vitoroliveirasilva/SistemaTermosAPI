@@ -22,7 +22,7 @@ class UsuarioController {
         });
       }
 
-      const resultado = await usuarioService.criarUsuariosEmMassa(usuarios);
+      const resultado = await usuarioService.criarEmMassa(usuarios);
 
       return res.status(201).json({
         mensagem: "Processamento concluído para a criação de usuários",
