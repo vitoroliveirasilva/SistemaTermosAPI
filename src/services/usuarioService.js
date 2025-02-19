@@ -88,7 +88,22 @@ class UsuarioService {
     }
 
     async atualizar(id, dados) {
+
+        if (!id || isNaN(id) || id <= 0) {
+            throw new Error("ID do usuário inválido.");
+        }
+
+        const usuario = await usuarioRepository.buscarPorId(id);
+        if (!usuario) {
+            throw new Error("Usuário não encontrado.");
+        }
+
+        if (!dados.nome && !dados.email && !dados.senha) {
+            throw new Error("Pelo menos um campo deve ser atualizado.");
+        }
+
         validarDados(dados, usuarioUpdateSchema);
+
         return await usuarioRepository.atualizar(id, dados);
     }
 
