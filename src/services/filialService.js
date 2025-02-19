@@ -10,30 +10,24 @@ const {
 class FilialService {
     async criar(dados) {
         validarDados(dados, filialSchema);
-        return await filialRepository.create(dados);
+        return await filialRepository.criar(dados);
     }
 
-    async listar() {
-        return await filialRepository.findAll();
+    async listar(filtros = {}) {
+        return await filialRepository.listar(filtros);
     }
 
     async buscarPorId(id) {
-        const filial = await filialRepository.findById(id);
-        if (!filial) throw new Error("Filial não encontrada.");
-        return filial;
+        return await filialRepository.buscarPorId(id);
     }
 
     async atualizar(id, dados) {
         validarDados(dados, filialSchema);
-        const filialAtualizada = await filialRepository.update(id, dados);
-        if (!filialAtualizada) throw new Error("Filial não encontrada.");
-        return filialAtualizada;
+        return await filialRepository.atualizar(id, dados);
     }
 
     async remover(id) {
-        const filialRemovida = await filialRepository.delete(id);
-        if (!filialRemovida) throw new Error("Filial não encontrada.");
-        return filialRemovida;
+        return await filialRepository.remover(id);
     }
 }
 
