@@ -3,7 +3,7 @@ const app = express();
 const routes = require('./routes');
 const {
   errorHandler
-} = require('../middlewares');
+} = require('../src/middlewares');
 
 // Para leitura de JSON no body das requisições
 app.use(express.json());
