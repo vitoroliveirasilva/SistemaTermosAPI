@@ -12,9 +12,7 @@ app.use(express.json());
 app.use('/api', routes);
 
 // Rota de teste
-app.get('/', (req, res) => {
-  res.send('API está funcionando!');
-});
+app.get('/ping', (req, res) => res.send('pong'));
 
 // Middleware global para tratamento de erros
 app.use(errorHandler);
