@@ -3,10 +3,10 @@ const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
 const validarId = require('../middlewares/validarIdMiddleware');
 
-router.post('/', usuarioController.criarUsuario);
-router.get('/', usuarioController.listarUsuarios);
-router.get('/:id', validarId, usuarioController.obterUsuario);
-router.put('/:id', validarId, usuarioController.atualizarUsuario);
-router.delete('/:id', validarId, usuarioController.deletarUsuario);
+router.post('/', usuarioController.criar);
+router.get('/', usuarioController.listar);
+router.get('/:id', validarId, usuarioController.buscarPorId);
+router.put('/:id', validarId, usuarioController.atualizar);
+router.delete('/:id', validarId, usuarioController.remover);
 
 module.exports = router;
