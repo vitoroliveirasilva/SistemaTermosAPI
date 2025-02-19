@@ -6,11 +6,20 @@ const {
     validarQueryParamsFiliais
 } = require('../middlewares');
 
-router.post('/', filialController.criar);
+
+// Rotas get
 router.get('/', filialController.listar);
 router.get('/filtros', validarQueryParamsFiliais, filialController.buscarPorFiltros);
 router.get('/:id', validarIds, filialController.buscarPorId);
+
+// Rotas post
+router.post('/', filialController.criar);
+
+// Rotas put
 router.put('/:id', validarIds, filialController.atualizar);
+
+// Rotas delete
 router.delete('/:id', validarIds, filialController.remover);
+
 
 module.exports = router;
