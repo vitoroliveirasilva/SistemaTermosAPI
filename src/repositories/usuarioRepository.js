@@ -112,6 +112,23 @@ class UsuarioRepository {
     }
   }
 
+  async vincularFilial(idUsuario, idFilial) {
+    try {
+      const [atualizados] = await Usuario.update({
+        filial_id: idFilial
+      }, {
+        where: {
+          id: idUsuario
+        }
+      });
+      if (!atualizados) return null;
+      return await this.buscarPorId(idUsuario);
+    } catch (error) {
+      console.error(`Erro ao vincular usuário ${idUsuario} à filial ${idFilial}:`, error);
+      throw new Error("Erro ao vincular usuário à filial.");
+    }
+  }
+
   /*
    * Método privado para construir filtros dinâmicos para busca
    * @param {Object} filtros - Objeto contendo os filtros (nome, email, status)
