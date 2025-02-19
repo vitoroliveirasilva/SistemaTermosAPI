@@ -59,6 +59,22 @@ class UsuarioController {
       next(error);
     }
   }
+
+  async vincularFilial(req, res, next) {
+    try {
+      const {
+        id,
+        filialId
+      } = req.params;
+      const usuario = await usuarioService.vincularFilial(id, filialId);
+      return res.status(200).json({
+        mensagem: "Usuário vinculado à filial com sucesso",
+        usuario
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = new UsuarioController();
