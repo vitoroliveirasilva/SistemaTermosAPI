@@ -8,7 +8,8 @@ const {
 class UsuarioRepository {
   async criar(dados) {
     try {
-      return await Usuario.create(dados);
+      const usuario = await Usuario.create(dados);
+      return usuario ? this.#removerSenha(usuario) : null;
     } catch (error) {
       console.error("Erro ao criar usuário:", error);
       throw new Error("Erro ao criar usuário.");
