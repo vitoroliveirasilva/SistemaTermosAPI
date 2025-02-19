@@ -4,7 +4,8 @@ const {
     validarDados
 } = require('../utils/validator');
 const {
-    usuarioSchema
+    usuarioSchema,
+    usuarioUpdateSchema
 } = require('../validations/usuarioSchema');
 const bcrypt = require('bcrypt');
 
@@ -87,7 +88,7 @@ class UsuarioService {
     }
 
     async atualizar(id, dados) {
-        validarDados(dados, usuarioSchema);
+        validarDados(dados, usuarioUpdateSchema);
         return await usuarioRepository.atualizar(id, dados);
     }
 
