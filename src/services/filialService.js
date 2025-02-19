@@ -10,6 +10,22 @@ const {
 class FilialService {
     async criar(dados) {
         validarDados(dados, filialSchema);
+
+        const nomeExistente = await filialRepository.buscarPorFiltros({
+            nome: dados.nome
+        });
+        const enderecoExistente = await filialRepository.buscarPorFiltros({
+            endereco: dados.endereco
+        });
+
+        if (nomeExistente.length > 0 && enderecoExistente.length > 0) {
+            throw new Error('Nome e endereço já cadastrados');
+        } else if (nomeExistente.length > 0) {
+            throw new Error('Nome já cadastrado');
+        } else if (enderecoExistente.length > 0) {
+            throw new Error('Endereço já cadastrado');
+        }
+
         return await filialRepository.criar(dados);
     }
 
