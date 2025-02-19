@@ -44,7 +44,22 @@ const Usuario = sequelize.define('Usuario', {
   }
 }, {
   tableName: 'usuarios',
-  timestamps: false
+  timestamps: false,
+  defaultScope: {
+    attributes: {
+      exclude: ['senha']
+    }, // Remove a senha por padrão
+    where: {
+      status: {
+        [sequelize.Op.not]: 'inativo'
+      }
+    } // Exclui usuários inativos das buscas
+  },
+  scopes: {
+    withPassword: {
+      attributes: {}
+    }, // Para buscar a senha quando necessário
+  }
 });
 
 module.exports = Usuario;
