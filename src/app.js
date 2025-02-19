@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const setupSwagger = require('./config/swaggerDocs');
 const routes = require('./routes');
 const {
   errorHandler
@@ -7,6 +8,9 @@ const {
 
 // Para leitura de JSON no body das requisições
 app.use(express.json());
+
+// Configuração do Swagger
+setupSwagger(app);
 
 // Definição das rotas principais
 app.use('/api', routes);
