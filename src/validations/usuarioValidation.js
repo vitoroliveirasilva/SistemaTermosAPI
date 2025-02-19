@@ -4,6 +4,9 @@ const Joi = require('joi');
 const regexNome = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/;
 const regexSenha = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
+// Valores do ENUM de status
+const statusValores = ['ativo', 'inativo', 'pendente'];
+
 // Esquema de validação do usuário
 const usuarioSchema = Joi.object({
     nome: Joi.string()
@@ -37,6 +40,13 @@ const usuarioSchema = Joi.object({
         .messages({
             'string.pattern.base': 'A senha deve ter pelo menos 8 caracteres, incluindo: uma maiúscula, uma minúscula, um número e um caractere especial (@$!%*?&).',
             'any.required': 'Senha é obrigatória.'
+        }),
+
+    status: Joi.string()
+        .valid(...statusValores)
+        .optional()
+        .messages({
+            'any.only': `O status deve ser um dos seguintes valores: ${statusValores.join(', ')}.`,
         })
 });
 
