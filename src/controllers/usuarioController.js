@@ -75,6 +75,33 @@ class UsuarioController {
       next(error);
     }
   }
+
+  async vincularMultiplosUsuarios(req, res, next) {
+    try {
+      const {
+        id
+      } = req.params;
+      const {
+        usuarios
+      } = req.body;
+
+      if (!Array.isArray(usuarios) || usuarios.length === 0) {
+        return res.status(400).json({
+          erro: "A lista de usuários é obrigatória e deve conter pelo menos um ID."
+        });
+      }
+
+      const resultado = await usuarioService.vincularMultiplosUsuarios(id, usuarios);
+
+      return res.status(200).json({
+        mensagem: `Processamento concluído para a filial ${id}`,
+        resultado
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
 }
 
 module.exports = new UsuarioController();
