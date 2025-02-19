@@ -160,13 +160,13 @@ class UsuarioService {
             const usuariosIgnorados = [];
             const falhas = [];
 
-            for (const idUsuario of usuarios) {
+            await Promise.all(usuarios.map(async (idUsuario) => {
                 if (!idUsuario || isNaN(idUsuario) || idUsuario <= 0) {
                     falhas.push({
                         idUsuario,
                         motivo: "ID de usuário inválido"
                     });
-                    continue;
+                    return;
                 }
 
                 try {
@@ -176,7 +176,7 @@ class UsuarioService {
                             idUsuario,
                             motivo: "Usuário não encontrado"
                         });
-                        continue;
+                        return;
                     }
 
                     const usuarioAtualizado = await usuarioRepository.vincularFilial(idUsuario, idFilial);
@@ -194,6 +194,10 @@ class UsuarioService {
                         motivo: error.message
                     });
                 }
+            }));
+
+            if (usuariosVinculados.length === 0) {
+                throw new Error("Nenhum usuário válido encontrado para vinculação.");
             }
 
             return {
@@ -205,8 +209,8 @@ class UsuarioService {
                 falhas
             };
         } catch (error) {
-            console.error(`Erro ao vincular múltiplos usuários à filial ${idFilial}:`, error);
-            throw new Error("Erro ao vincular múltiplos usuários à filial.");
+            console.error(`Erro ao vincular múltiplos usuários à filial ${idFilial}:`, error.message);
+            throw new Error(error.message || "Erro ao vincular múltiplos usuários à filial.");
         }
     }
 
