@@ -8,6 +8,9 @@ const {
     usuarioUpdateSchema
 } = require('../validations/usuarioSchema');
 const bcrypt = require('bcrypt');
+const {
+    or
+} = require('../validations/filialSchema');
 
 
 class UsuarioService {
