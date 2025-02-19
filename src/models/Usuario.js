@@ -1,5 +1,6 @@
 const {
-  DataTypes
+  DataTypes,
+  Op
 } = require('sequelize');
 const sequelize = require('../config/database');
 
@@ -51,7 +52,7 @@ const Usuario = sequelize.define('Usuario', {
     }, // Remove a senha por padrão
     where: {
       status: {
-        [sequelize.Op.not]: 'inativo'
+        [Op.not]: 'inativo'
       }
     } // Exclui usuários inativos das buscas
   },
