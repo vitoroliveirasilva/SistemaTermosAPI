@@ -6,6 +6,9 @@ class FilialController {
             const filial = await filialService.criar(req.body);
             return res.status(201).json(filial);
         } catch (error) {
+            if (error.status === 400) {
+                return res.status(400).json({ erro: error.message });
+            }
             next(error);
         }
     }
