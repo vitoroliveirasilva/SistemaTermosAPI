@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
 const {
-    validarId,
+    validarIds,
     validarQueryParamsUsuarios
 } = require('../middlewares');
 
@@ -10,8 +10,8 @@ router.post('/', usuarioController.criar);
 router.put('/:id/filial/:filialId', usuarioController.vincularFilial);
 router.get('/', usuarioController.listar);
 router.get('/filtros', validarQueryParamsUsuarios, usuarioController.buscarPorFiltros);
-router.get('/:id', validarId, usuarioController.buscarPorId);
-router.put('/:id', validarId, usuarioController.atualizar);
-router.delete('/:id', validarId, usuarioController.remover);
+router.get('/:id', validarIds, usuarioController.buscarPorId);
+router.put('/:id', validarIds, usuarioController.atualizar);
+router.delete('/:id', validarIds, usuarioController.remover);
 
 module.exports = router;
