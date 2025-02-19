@@ -10,6 +10,29 @@ class UsuarioController {
     }
   }
 
+  async criarEmMassa(req, res, next) {
+    try {
+      const {
+        usuarios
+      } = req.body;
+
+      if (!Array.isArray(usuarios) || usuarios.length === 0) {
+        return res.status(400).json({
+          erro: "A lista de usuários é obrigatória e deve conter pelo menos um usuário."
+        });
+      }
+
+      const resultado = await usuarioService.criarUsuariosEmMassa(usuarios);
+
+      return res.status(201).json({
+        mensagem: "Processamento concluído para a criação de usuários",
+        resultado
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async listar(req, res, next) {
     try {
       const usuarios = await usuarioService.listar();
