@@ -110,7 +110,7 @@ class UsuarioService {
             return await usuarioRepository.vincularFilial(idUsuario, idFilial);
         } catch (error) {
             console.error(`Erro ao vincular usuário ${idUsuario} à filial ${idFilial}:`, error);
-            throw new Error("Erro ao vincular filial ao usuário.");
+            throw error;
         }
     }
 
