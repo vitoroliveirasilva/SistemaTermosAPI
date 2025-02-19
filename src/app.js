@@ -1,12 +1,13 @@
 const express = require('express');
-const app = express();
 const setupSwagger = require('./config/swaggerDocs');
 const routes = require('./routes');
 const {
   errorHandler
 } = require('./middlewares');
 
-// Para leitura de JSON no body das requisições
+const app = express();
+
+// Middleware para leitura de JSON no body das requisições
 app.use(express.json());
 
 // Configuração do Swagger
