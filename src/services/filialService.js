@@ -1,6 +1,7 @@
 const filialRepository = require('../repositories/filialRepository');
 const {
-    validarDados
+    validarDados,
+    unicidadeFilial
 } = require('../utils');
 const {
     filialSchema
@@ -10,22 +11,7 @@ const {
 class FilialService {
     async criar(dados) {
         validarDados(dados, filialSchema);
-
-        const nomeExistente = await filialRepository.buscarPorFiltros({
-            nome: dados.nome
-        });
-        const enderecoExistente = await filialRepository.buscarPorFiltros({
-            endereco: dados.endereco
-        });
-
-        if (nomeExistente.length > 0 && enderecoExistente.length > 0) {
-            throw { status: 400, message: 'Nome e endereço já cadastrados' };
-        } else if (nomeExistente.length > 0) {
-            throw { status: 400, message: 'Nome já cadastrado' };
-        } else if (enderecoExistente.length > 0) {
-            throw { status: 400, message: 'Endereço já cadastrado' };
-        }
-
+        await unicidadeFilial(dados);
         return await filialRepository.criar(dados);
     }
 
