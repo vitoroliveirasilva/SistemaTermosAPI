@@ -1,10 +1,10 @@
-const validarId = require('./validacao/validarIdMiddleware');
+const validarIds = require('./validacao/validarIdsMiddleware');
 const validarQueryParamsUsuarios = require('./validacao/validarQueryParamsUsuariosMiddleware');
 const validarQueryParamsFiliais = require('./validacao/validarQueryParamsFiliaisMiddleware');
 const errorHandler = require('./errorHandler');
 
 module.exports = {
-  validarId,
+  validarIds,
   validarQueryParamsUsuarios,
   validarQueryParamsFiliais,
   errorHandler
