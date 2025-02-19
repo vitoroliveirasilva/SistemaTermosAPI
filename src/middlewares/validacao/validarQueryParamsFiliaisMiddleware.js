@@ -6,7 +6,7 @@ function validarQueryParamsFiliais(req, res, next) {
 
     if (!nome && !endereco) {
         return res.status(400).json({
-            erro: "Pelo menos um filtro (nome, endereco) deve ser informado."
+            erro: "Para continuar, por favor, informe pelo menos um filtro (nome ou endereço)."
         });
     }
 
