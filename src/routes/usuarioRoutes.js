@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
-const validarId = require('../middlewares/validarIdMiddleware');
+const {
+    validarId
+} = require('../middlewares');
 
 router.post('/', usuarioController.criar);
 router.get('/', usuarioController.listar);
