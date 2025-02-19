@@ -19,11 +19,11 @@ class FilialService {
         });
 
         if (nomeExistente.length > 0 && enderecoExistente.length > 0) {
-            throw new Error('Nome e endereço já cadastrados');
+            throw { status: 400, message: 'Nome e endereço já cadastrados' };
         } else if (nomeExistente.length > 0) {
-            throw new Error('Nome já cadastrado');
+            throw { status: 400, message: 'Nome já cadastrado' };
         } else if (enderecoExistente.length > 0) {
-            throw new Error('Endereço já cadastrado');
+            throw { status: 400, message: 'Endereço já cadastrado' };
         }
 
         return await filialRepository.criar(dados);
