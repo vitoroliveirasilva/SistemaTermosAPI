@@ -31,31 +31,39 @@ class UsuarioService {
             if (!Array.isArray(usuarios) || usuarios.length === 0) {
                 throw new Error("A lista de usuários é inválida.");
             }
-    
+
             const usuariosCriados = [];
             const usuariosIgnorados = [];
             const falhas = [];
-    
+
             for (const usuario of usuarios) {
                 try {
                     validarDados(usuario, usuarioSchema);
-    
-                    const usuarioExistente = await usuarioRepository.buscarPorFiltros({ email: usuario.email });
+
+                    const usuarioExistente = await usuarioRepository.buscarPorFiltros({
+                        email: usuario.email
+                    });
                     if (usuarioExistente.length > 0) {
-                        usuariosIgnorados.push({ email: usuario.email, motivo: "E-mail já cadastrado" });
+                        usuariosIgnorados.push({
+                            email: usuario.email,
+                            motivo: "E-mail já cadastrado"
+                        });
                         continue;
                     }
-    
+
                     usuario.senha = await bcrypt.hash(usuario.senha, 10);
                     usuario.status = 'ativo';
-    
+
                     const novoUsuario = await usuarioRepository.criar(usuario);
                     usuariosCriados.push(novoUsuario);
                 } catch (error) {
-                    falhas.push({ usuario, motivo: error.message });
+                    falhas.push({
+                        usuario,
+                        motivo: error.message
+                    });
                 }
             }
-    
+
             return {
                 totalCriados: usuariosCriados.length,
                 totalIgnorados: usuariosIgnorados.length,
