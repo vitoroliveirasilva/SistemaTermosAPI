@@ -7,7 +7,7 @@ const {
 } = require('../middlewares');
 
 router.post('/', usuarioController.criar);
-router.put('/:id/filial/:filialId', usuarioController.vincularFilial);
+router.put('/:id/filial/:filialId', validarIds, usuarioController.vincularFilial);
 router.get('/', usuarioController.listar);
 router.get('/filtros', validarQueryParamsUsuarios, usuarioController.buscarPorFiltros);
 router.get('/:id', validarIds, usuarioController.buscarPorId);
