@@ -69,6 +69,75 @@ class UsuarioService {
         }
     }
 
+    async vincularMultiplosUsuarios(idFilial, usuarios) {
+        try {
+            if (!idFilial || isNaN(idFilial) || idFilial <= 0) {
+                throw new Error("ID da filial inválido.");
+            }
+
+            const filial = await filialRepository.buscarPorId(idFilial);
+            if (!filial) {
+                throw new Error("Filial não encontrada.");
+            }
+
+            if (!Array.isArray(usuarios) || usuarios.length === 0) {
+                throw new Error("A lista de usuários é inválida.");
+            }
+
+            const usuariosVinculados = [];
+            const usuariosIgnorados = [];
+            const falhas = [];
+
+            for (const idUsuario of usuarios) {
+                if (!idUsuario || isNaN(idUsuario) || idUsuario <= 0) {
+                    falhas.push({
+                        idUsuario,
+                        motivo: "ID de usuário inválido"
+                    });
+                    continue;
+                }
+
+                try {
+                    const usuario = await usuarioRepository.buscarPorId(idUsuario);
+                    if (!usuario) {
+                        usuariosIgnorados.push({
+                            idUsuario,
+                            motivo: "Usuário não encontrado"
+                        });
+                        continue;
+                    }
+
+                    const usuarioAtualizado = await usuarioRepository.vincularFilial(idUsuario, idFilial);
+                    if (usuarioAtualizado) {
+                        usuariosVinculados.push(usuarioAtualizado);
+                    } else {
+                        falhas.push({
+                            idUsuario,
+                            motivo: "Erro ao atualizar no banco de dados"
+                        });
+                    }
+                } catch (error) {
+                    falhas.push({
+                        idUsuario,
+                        motivo: error.message
+                    });
+                }
+            }
+
+            return {
+                totalVinculados: usuariosVinculados.length,
+                totalIgnorados: usuariosIgnorados.length,
+                totalFalhas: falhas.length,
+                usuariosVinculados,
+                usuariosIgnorados,
+                falhas
+            };
+        } catch (error) {
+            console.error(`Erro ao vincular múltiplos usuários à filial ${idFilial}:`, error);
+            throw new Error("Erro ao vincular múltiplos usuários à filial.");
+        }
+    }
+
 }
 
 module.exports = new UsuarioService();
