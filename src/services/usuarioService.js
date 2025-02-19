@@ -4,62 +4,60 @@ const {
 } = require('../utils/validator');
 const {
     usuarioSchema
-} = require('../validations/usuarioValidation');
+} = require('../validations/usuarioSchema');
 const bcrypt = require('bcrypt');
 
-async function cadastrarUsuario(dados) {
-    validarDados(dados, usuarioSchema);
 
-    const usuarioExistente = await usuarioRepository.buscarUsuarioPorEmail(dados.email);
-    if (usuarioExistente) {
-        throw new Error('E-mail já cadastrado');
+class UsuarioService {
+    async criar(dados) {
+        validarDados(dados, usuarioSchema);
+
+        const usuarioExistente = await usuarioRepository.buscarUsuarioPorEmail(dados.email);
+        if (usuarioExistente) {
+            throw new Error('E-mail já cadastrado');
+        }
+
+        // Hash da senha antes de salvar
+        dados.senha = await bcrypt.hash(dados.senha, 10);
+
+        // Definir status como "ativo" ao criar um usuário
+        dados.status = 'ativo';
+
+        return await usuarioRepository.criarUsuario(dados);
     }
 
-    // Hash da senha antes de salvar
-    dados.senha = await bcrypt.hash(dados.senha, 10);
+    async listar() {
+        const usuarios = await usuarioRepository.listarUsuarios();
+        return usuarios.map(({
+            senha,
+            ...usuarioSemSenha
+        }) => usuarioSemSenha);
+    }
 
-    // Definir status como "ativo" ao criar um usuário
-    dados.status = 'ativo';
+    async buscarPorId(id) {
+        const usuario = await usuarioRepository.buscarUsuarioPorId(id);
+        if (!usuario) throw new Error('Usuário não encontrado');
 
-    return await usuarioRepository.criarUsuario(dados);
+        // Removendo a senha do retorno
+        const {
+            senha,
+            ...usuarioSemSenha
+        } = usuario.toJSON();
+        return usuarioSemSenha;
+    }
+
+    async atualizar(id, dados) {
+        validarDados(dados, usuarioSchema);
+        const usuarioAtualizado = await usuarioRepository.atualizarUsuario(id, dados);
+        if (!usuarioAtualizado) throw new Error('Usuário não encontrado para atualização');
+        return usuarioAtualizado;
+    }
+
+    async remover(id) {
+        const usuarioRemovido = await usuarioRepository.deletarUsuario(id);
+        if (!usuarioRemovido) throw new Error('Usuário não encontrado para exclusão');
+        return usuarioRemovido;
+    }
 }
 
-async function obterUsuario(id) {
-    const usuario = await usuarioRepository.buscarUsuarioPorId(id);
-    if (!usuario) throw new Error('Usuário não encontrado');
-
-    const {
-        senha,
-        ...usuarioSemSenha
-    } = usuario.toJSON();
-    return usuarioSemSenha;
-}
-
-async function listarUsuarios() {
-    const usuarios = await usuarioRepository.listarUsuarios();
-    return usuarios.map(({
-        senha,
-        ...usuarioSemSenha
-    }) => usuarioSemSenha);
-}
-
-async function editarUsuario(id, dados) {
-    validarDados(dados, usuarioSchema);
-    const usuarioAtualizado = await usuarioRepository.atualizarUsuario(id, dados);
-    if (!usuarioAtualizado) throw new Error('Usuário não encontrado para atualização');
-    return usuarioAtualizado;
-}
-
-async function removerUsuario(id) {
-    const usuarioRemovido = await usuarioRepository.deletarUsuario(id);
-    if (!usuarioRemovido) throw new Error('Usuário não encontrado para exclusão');
-    return usuarioRemovido;
-}
-
-module.exports = {
-    cadastrarUsuario,
-    obterUsuario,
-    listarUsuarios,
-    editarUsuario,
-    removerUsuario
-};
+module.exports = new UsuarioService();
