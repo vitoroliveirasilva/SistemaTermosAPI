@@ -9,6 +9,7 @@ const {
 router.post('/', usuarioController.criar);
 router.put('/:id/filial/:filialId', validarIds, usuarioController.vincularFilial);
 router.post('/filial/:id/usuarios', validarIds, usuarioController.vincularMultiplosUsuarios);
+router.post('/lote', usuarioController.criarEmMassa);
 router.get('/', usuarioController.listar);
 router.get('/filtros', validarQueryParamsUsuarios, usuarioController.buscarPorFiltros);
 router.get('/:id', validarIds, usuarioController.buscarPorId);
