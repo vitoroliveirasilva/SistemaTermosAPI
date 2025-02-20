@@ -1,12 +1,25 @@
+const {
+    validarId
+} = require('../../utils/validarId');
+
 function validarIds(req, res, next) {
-    for (const [key, value] of Object.entries(req.params)) {
-        if (isNaN(value) || parseInt(value) <= 0) {
-            return res.status(400).json({
-                erro: `O parâmetro "${key}" possui um ID inválido. Deve ser um número positivo.`
+    const parametrosInvalidos = Object.entries(req.params).find(([key, value]) => {
+        const {
+            valido,
+            mensagem
+        } = validarId(value);
+        if (!valido) {
+            res.status(400).json({
+                erro: mensagem
             });
+            return true; // Interrompe o `find()` se encontrar um erro
         }
+        return false;
+    });
+
+    if (!parametrosInvalidos) {
+        next();
     }
-    next();
 }
 
 module.exports = validarIds;
