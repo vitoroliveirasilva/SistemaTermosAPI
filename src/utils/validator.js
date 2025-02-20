@@ -1,3 +1,5 @@
+const Joi = require('joi');
+
 /*
  * Valida os dados com base no esquema Joi fornecido.
  * @param {Object} dados - Objeto de entrada a ser validado.
