@@ -47,16 +47,25 @@ class FilialService {
             this.#validarIdOuErro(id);
 
             const filial = await filialRepository.buscarPorId(id);
+
             if (!filial) {
                 throw {
                     status: 404,
                     message: `Filial com ID ${id} não encontrada.`
                 };
             }
+
             return filial;
         } catch (error) {
-            console.error(`Erro ao buscar filial com ID ${id}:`, error);
-            throw error;
+            if (error.status && error.message) {
+                throw error;
+            }
+
+            console.error(`Erro inesperado ao buscar filial com ID ${id}:`, error.message || error);
+            throw {
+                status: 500,
+                message: 'Erro ao buscar filial. Tente novamente mais tarde.'
+            };
         }
     }
 
