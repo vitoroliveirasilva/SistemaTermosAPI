@@ -13,9 +13,9 @@ function errorHandler(err, req, res, next) {
         });
     }
 
-    const statusCode = err.statusCode || 500;
+    const statusCode = err.status || 500;
     return res.status(statusCode).json({
-        erro: err.message || 'Erro interno do servidor',
+        message: err.message || 'Erro interno do servidor',
         status: statusCode
     });
 }
