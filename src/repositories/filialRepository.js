@@ -11,8 +11,12 @@ class FilialRepository {
         try {
             return await Filial.create(dados);
         } catch (error) {
-            console.error("Erro ao criar filial:", error);
-            throw new Error("Erro ao criar filial.");
+            console.error('Erro ao criar filial:', error);
+            throw {
+                status: 500,
+                message: 'Erro ao criar filial. Tente novamente mais tarde.',
+                error: error.message
+            };
         }
     }
 
@@ -22,23 +26,33 @@ class FilialRepository {
                 where: this.#construirFiltros(filtros)
             });
         } catch (error) {
-            console.error("Erro ao listar filiais:", error);
-            throw new Error("Erro ao listar filiais.");
+            console.error('Erro ao listar filiais:', error);
+            throw {
+                status: 500,
+                message: 'Erro ao listar filiais. Tente novamente mais tarde.',
+                error: error.message
+            };
         }
     }
 
     async buscarPorId(id) {
-        if (!id || isNaN(id) || id <= 0) {
-            throw new Error("ID inválido.");
-        }
-
         try {
-            return await Filial.findByPk(id, {
-                rejectOnEmpty: false
-            });
+            if (!id || isNaN(id) || id <= 0) {
+                throw {
+                    status: 400,
+                    message: 'ID inválido. Deve ser um número positivo.'
+                };
+            }
+
+            const filial = await Filial.findByPk(id);
+            return filial || null;
         } catch (error) {
             console.error(`Erro ao buscar filial com ID ${id}:`, error);
-            throw new Error("Erro ao buscar filial.");
+            throw {
+                status: 500,
+                message: 'Erro ao buscar filial. Tente novamente mais tarde.',
+                error: error.message
+            };
         }
     }
 
@@ -48,58 +62,73 @@ class FilialRepository {
                 where: this.#construirFiltros(filtros)
             });
         } catch (error) {
-            console.error("Erro ao buscar filiais por filtros:", error);
-            throw new Error("Erro ao buscar filiais.");
+            console.error('Erro ao buscar filiais por filtros:', error);
+            throw {
+                status: 500,
+                message: 'Erro ao buscar filiais. Tente novamente mais tarde.',
+                error: error.message
+            };
         }
     }
 
     async atualizar(id, dados) {
-        if (!id || isNaN(id) || id <= 0) {
-            throw new Error("ID inválido.");
-        }
-
-        const filial = await this.buscarPorId(id);
-        if (!filial) return null;
-
         try {
-            return await filial.update(dados);
+            const filial = await this.buscarPorId(id);
+            if (!filial) {
+                throw {
+                    status: 404,
+                    message: `Filial com ID ${id} não encontrada.`
+                };
+            }
+
+            await filial.update(dados);
+            return filial;
         } catch (error) {
             console.error(`Erro ao atualizar filial com ID ${id}:`, error);
-            throw new Error("Erro ao atualizar filial.");
+            throw {
+                status: 500,
+                message: 'Erro ao atualizar filial. Tente novamente mais tarde.',
+                error: error.message
+            };
         }
     }
 
     async remover(id) {
-        if (!id || isNaN(id) || id <= 0) {
-            throw new Error("ID inválido.");
-        }
-        
-        const filial = await this.buscarPorId(id);
-        if (!filial) return null;
-
         try {
+            const filial = await this.buscarPorId(id);
+            if (!filial) {
+                throw {
+                    status: 404,
+                    message: `Filial com ID ${id} não encontrada.`
+                };
+            }
+
             await filial.destroy();
-            return filial;
+            return {
+                status: 200,
+                message: `Filial com ID ${id} removida com sucesso.`
+            };
         } catch (error) {
             console.error(`Erro ao remover filial com ID ${id}:`, error);
-            throw new Error("Erro ao remover filial.");
+            throw {
+                status: 500,
+                message: 'Erro ao remover filial. Tente novamente mais tarde.',
+                error: error.message
+            };
         }
     }
 
-    
     #construirFiltros({
         nome,
         endereco
     }) {
         const filtros = {};
-
         if (nome) filtros.nome = {
             [Op.like]: `%${nome.trim()}%`
         };
         if (endereco) filtros.endereco = {
             [Op.like]: `%${endereco.trim()}%`
         };
-
         return filtros;
     }
 }
