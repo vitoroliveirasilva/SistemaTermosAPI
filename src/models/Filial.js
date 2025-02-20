@@ -28,15 +28,10 @@ const Filial = sequelize.define('Filial', {
     },
     endereco: {
         type: DataTypes.STRING(255),
-        allowNull: false,
+        allowNull: true,
         unique: {
             args: true,
             msg: 'Endereço já cadastrado!'
-        },
-        validate: {
-            notEmpty: {
-                msg: "O endereço não pode ser vazio."
-            }
         }
     }
 }, {

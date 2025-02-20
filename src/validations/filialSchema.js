@@ -6,7 +6,7 @@ const filialSchema = Joi.object({
         "string.min": "O nome deve ter pelo menos 2 caracteres.",
         "string.max": "O nome deve ter no máximo 100 caracteres."
     }),
-    endereco: Joi.string().max(255).required().messages({
+    endereco: Joi.string().max(255).optional().messages({
         "string.empty": "O endereço da filial é obrigatório.",
         "string.max": "O endereço deve ter no máximo 255 caracteres."
     })
