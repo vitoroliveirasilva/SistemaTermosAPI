@@ -17,7 +17,12 @@ function validarDados(dados, schema) {
     });
 
     if (error) {
-        throw new Error(`Erro de validação: ${error.details.map(d => d.message).join(', ')}`);
+        const mensagensErro = error.details.map(d => d.message).join(', ');
+
+        throw {
+            status: 400,
+            message: `Erro de validação: ${mensagensErro}`
+        };
     }
 
     return value;
