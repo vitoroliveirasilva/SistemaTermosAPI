@@ -1,4 +1,7 @@
 const {
+  validarId
+} = require('./validarId');
+const {
   validarDados
 } = require('./validator');
 const {
@@ -6,6 +9,7 @@ const {
 } = require('./filialUtils');
 
 module.exports = {
+  validarId,
   validarDados,
   unicidadeFilial
 };
