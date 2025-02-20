@@ -14,10 +14,7 @@ const {
 class FilialService {
     async criar(dados) {
         try {
-            // Valida os dados recebidos com base no schema
-            validarDados(dados, filialSchema);
-
-            // Valida se já existe uma filial com os mesmos dados (para evitar duplicação)
+            // Valida os dados e verifica se já existe uma filial com os mesmos dados (para evitar duplicação)
             await validarUnicidadeFilial(dados);
 
             // Chama o repository para salvar no banco de dados
