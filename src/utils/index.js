@@ -5,11 +5,12 @@ const {
   validarDados
 } = require('./validator');
 const {
-  unicidadeFilial
+  validarUnicidadeFilial
 } = require('./filialUtils');
+
 
 module.exports = {
   validarId,
   validarDados,
-  unicidadeFilial
+  validarUnicidadeFilial
 };
