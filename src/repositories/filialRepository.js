@@ -95,7 +95,11 @@ class FilialRepository {
                 };
             }
 
-            return await filial.destroy();
+            return await filial.destroy({
+                where: {
+                    id
+                }
+            });
         } catch (error) {
             console.error(`Erro ao remover filial com ID ${id}:`, error);
             throw {
