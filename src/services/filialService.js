@@ -79,6 +79,18 @@ class FilialService {
                 };
             }
 
+            // Valida os dados e verifica se respeitam a unicidade
+            await validarUnicidadeFilial(dados, id);
+
+            // Verifica se há conflitos de unicidade antes de continuar
+            const errosValidacao = await validarUnicidadeFilial(dados, id);
+            if (errosValidacao.length > 0) {
+                return {
+                    status: 400,
+                    message: errosValidacao.length > 1 ? 'Campos duplicados.' : 'Campo duplicado.',
+                    errors: errosValidacao
+                };
+            }
 
             // Verifica se houve mudanças nos dados antes de salvar
             if (!this.#houveAlteracao(filialAtual, dados)) {
@@ -87,9 +99,6 @@ class FilialService {
                     message: 'Nenhuma alteração foi feita nos dados da filial.'
                 };
             }
-
-            // Verifica se os novos dados respeitam unicidade
-            await validarUnicidadeFilial(dados, id);
 
             return await filialRepository.atualizar(id, dados);
         } catch (error) {
