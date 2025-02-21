@@ -12,7 +12,19 @@ const TermStatus = sequelize.define('TermStatus', {
     nome: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        unique: true
+        unique: {
+            args: true,
+            msg: 'Filial já cadastrada!'
+        },
+        validate: {
+            notEmpty: {
+                msg: "O nome da filial não pode ser vazio."
+            },
+            len: {
+                args: [2, 100],
+                msg: "O nome deve ter entre 2 e 100 caracteres."
+            }
+        }
     },
     criadoEm: {
         type: DataTypes.DATE,
@@ -20,7 +32,8 @@ const TermStatus = sequelize.define('TermStatus', {
     }
 }, {
     tableName: 'term_status',
-    timestamps: false
+    timestamps: true, // Habilita createdAt e updatedAt
+    underscored: true
 });
 
 module.exports = TermStatus;
