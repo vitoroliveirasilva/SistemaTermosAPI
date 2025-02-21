@@ -3,7 +3,6 @@ const {
     validarId
 } = require('../utils/validarId');
 const {
-    validarDados,
     validarUnicidadeFilial
 } = require('../utils');
 
@@ -80,9 +79,6 @@ class FilialService {
             }
 
             // Valida os dados e verifica se respeitam a unicidade
-            await validarUnicidadeFilial(dados, id);
-
-            // Verifica se há conflitos de unicidade antes de continuar
             const errosValidacao = await validarUnicidadeFilial(dados, id);
             if (errosValidacao.length > 0) {
                 return {
