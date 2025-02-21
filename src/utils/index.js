@@ -7,10 +7,14 @@ const {
 const {
   validarUnicidadeFilial
 } = require('./filialUtils');
+const {
+  validarUnicidadeStatusTermo
+} = require('./statusTermoUtils');
 
 
 module.exports = {
   validarId,
   validarDados,
-  validarUnicidadeFilial
+  validarUnicidadeFilial,
+  validarUnicidadeStatusTermo
 };
