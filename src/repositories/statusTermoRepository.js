@@ -74,7 +74,12 @@ class StatusTermoRepository {
                 };
             }
 
-            return await TermStatus.update(dados);
+            await TermStatus.update(dados, {
+                where: {
+                    id
+                }
+            });
+            return await TermStatus.findByPk(id);
         } catch (error) {
             console.error(`Erro ao atualizar status com ID ${id}:`, error);
             throw {

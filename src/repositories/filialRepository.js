@@ -74,7 +74,12 @@ class FilialRepository {
                 };
             }
 
-            return await Filial.update(dados);
+            await Filial.update(dados, {
+                where: {
+                    id
+                }
+            });
+            return await Filial.findByPk(id);
         } catch (error) {
             console.error(`Erro ao atualizar filial com ID ${id}:`, error);
             throw {
