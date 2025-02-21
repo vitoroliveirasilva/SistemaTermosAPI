@@ -122,7 +122,7 @@ class StatusTermoService {
             await statusTermoRepository.remover(id);
 
             return {
-                status: 200,
+                status: 204,
                 message: `Status com ID ${id} removido com sucesso.`
             };
         } catch (error) {
