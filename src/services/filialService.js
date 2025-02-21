@@ -126,7 +126,7 @@ class FilialService {
             await filialRepository.remover(id);
 
             return {
-                status: 200,
+                status: 204,
                 message: `Filial com ID ${id} removida com sucesso.`
             };
         } catch (error) {
