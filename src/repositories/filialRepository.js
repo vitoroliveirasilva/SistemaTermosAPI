@@ -74,8 +74,7 @@ class FilialRepository {
                 };
             }
 
-            await filial.update(dados);
-            return filial;
+            return await filial.update(dados);
         } catch (error) {
             console.error(`Erro ao atualizar filial com ID ${id}:`, error);
             throw {
@@ -96,11 +95,7 @@ class FilialRepository {
                 };
             }
 
-            await filial.destroy();
-            return {
-                status: 200,
-                message: `Filial com ID ${id} removida com sucesso.`
-            };
+            return await filial.destroy();
         } catch (error) {
             console.error(`Erro ao remover filial com ID ${id}:`, error);
             throw {
