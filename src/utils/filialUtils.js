@@ -1,54 +1,46 @@
 const filialRepository = require('../repositories/filialRepository');
+const {
+    filialSchema
+} = require('../validations');
+const {
+    validarDados
+} = require('./validator');
 
 /*
- * Valida a unicidade da filial, verificando se nome ou endereço já existem.
- * @param {Object} dados - Dados da filial contendo nome e endereço.
+ * Valida a unicidade da filial, verificando se nome ou endereço já existem no banco de dados.
+ * @param {Object} dados - Dados da filial contendo nome e/ou endereço.
  * @param {number|null} [id=null] - ID da filial para ignorar na edição.
- * @throws {Object} - Erro com status HTTP 400 e mensagem descritiva caso já exista um registro com os mesmos dados.
+ * @throws {Error} - Erro com status HTTP 400 e mensagem descritiva caso já exista um registro com os mesmos dados.
 */
 async function validarUnicidadeFilial(dados, id = null) {
-    if (!dados || (!dados.nome && !dados.endereco)) {
-        throw {
-            status: 400,
-            message: 'Dados inválidos para verificação de unicidade.'
-        };
+    // Validação dos dados com base no schema JOI da filial
+    validarDados(dados, filialSchema);
+
+    // Verifica o nome e endereço simultaneamente
+    const filiaisExistentes = await filialRepository.buscarPorFiltros(dados);
+
+    // Filtra os registros encontrados, ignorando o ID atual (só se houver um id pra ser filtrado)
+    const filiaisFiltradas = filiaisExistentes.filter(filial => filial.id !== id);
+
+    // Verifica conflitos para nome e endereço
+    const nomeConflito = filiaisFiltradas.some(f => f.nome === nome);
+    const enderecoConflito = filiaisFiltradas.some(f => f.endereco === endereco);
+
+    // Define a mensagem de erro conforme os conflitos encontrados
+    let erroMsg = null;
+    if (nomeConflito && enderecoConflito) {
+        erroMsg = 'Nome e endereço já cadastrados.';
+    } else if (nomeConflito) {
+        erroMsg = 'Nome já cadastrado.';
+    } else if (enderecoConflito) {
+        erroMsg = 'Endereço já cadastrado.';
     }
 
-    // Filtra as consultas para evitar requisições desnecessárias
-    const consultas = [];
-    if (dados.nome) consultas.push(filialRepository.buscarPorFiltros({
-        nome: dados.nome
-    }));
-    if (dados.endereco) consultas.push(filialRepository.buscarPorFiltros({
-        endereco: dados.endereco
-    }));
-
-    const resultados = await Promise.all(consultas);
-
-    let nomeExistente = [],
-        enderecoExistente = [];
-    if (dados.nome) nomeExistente = resultados.shift();
-    if (dados.endereco) enderecoExistente = resultados.shift();
-
-    // Filtra para ignorar o próprio ID na edição
-    const outroNomeExistente = nomeExistente.filter(filial => filial.id !== id);
-    const outroEnderecoExistente = enderecoExistente.filter(filial => filial.id !== id);
-
-    // Criar um objeto de erro com mensagens dinâmicas
-    const erros = [];
-    if (outroNomeExistente.length > 0) erros.push('Nome');
-    if (outroEnderecoExistente.length > 0) erros.push('Endereço');
-
-    if (erros.length > 0) {
-        const mensagem = erros.length > 1 ?
-            `${erros.join(' e ')} já cadastrados`
-            :
-            `${erros[0]} já cadastrado`;
-
-        throw {
-            status: 400,
-            message: mensagem
-        };
+    // Lança erro se houver conflito de dados
+    if (erroMsg) {
+        const error = new Error(erroMsg);
+        error.status = 400;
+        throw error;
     }
 }
 
