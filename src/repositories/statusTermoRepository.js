@@ -74,8 +74,7 @@ class StatusTermoRepository {
                 };
             }
 
-            await statusTermo.update(dados);
-            return statusTermo;
+            return await TermStatus.update(dados);
         } catch (error) {
             console.error(`Erro ao atualizar status com ID ${id}:`, error);
             throw {
@@ -96,11 +95,11 @@ class StatusTermoRepository {
                 };
             }
 
-            await TermStatus.destroy();
-            return {
-                status: 200,
-                message: `Status de termo com ID ${id} removido com sucesso.`
-            };
+            return await TermStatus.destroy({
+                where: {
+                    id
+                }
+            });
         } catch (error) {
             console.error(`Erro ao remover status com ID ${id}:`, error);
             throw {
