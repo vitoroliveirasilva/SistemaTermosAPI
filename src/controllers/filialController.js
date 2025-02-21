@@ -48,8 +48,8 @@ class FilialController {
 
     async remover(req, res, next) {
         try {
-            await filialService.remover(req.params.id);
-            return res.status(204).send();
+            const resultado = await filialService.remover(req.params.id);
+            return res.status(200).json(resultado);
         } catch (error) {
             next(error);
         }
