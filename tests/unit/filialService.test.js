@@ -78,7 +78,7 @@ describe('FilialService', () => {
         const result = await filialService.remover(1);
 
         expect(result).toEqual({
-            status: 200,
+            status: 204,
             message: "Filial com ID 1 removida com sucesso."
         });
         expect(filialRepository.remover).toHaveBeenCalledWith(1);
