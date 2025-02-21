@@ -49,7 +49,7 @@ class StatusTermoController {
     async remover(req, res, next) {
         try {
             const resultado = await statusTermoService.remover(req.params.id);
-            return res.status(200).json(resultado);
+            return res.status(204).json(resultado);
         } catch (error) {
             next(error);
         }
