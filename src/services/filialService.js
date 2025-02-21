@@ -10,8 +10,15 @@ const {
 class FilialService {
     async criar(dados) {
         try {
-            // Valida os dados e verifica se já existe uma filial com os mesmos dados (para evitar duplicação)
-            await validarUnicidadeFilial(dados);
+            // Valida os dados e verifica se respeitam a unicidade
+            const errosValidacao = await validarUnicidadeFilial(dados);
+            if (errosValidacao.length > 0) {
+                return {
+                    status: 400,
+                    message: errosValidacao.length > 1 ? 'Campos duplicados.' : 'Campo duplicado.',
+                    errors: errosValidacao
+                };
+            }
 
             // Chama o repository para salvar no banco de dados
             return await filialRepository.criar(dados);
