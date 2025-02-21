@@ -74,7 +74,7 @@ class FilialRepository {
                 };
             }
 
-            return await filial.update(dados);
+            return await Filial.update(dados);
         } catch (error) {
             console.error(`Erro ao atualizar filial com ID ${id}:`, error);
             throw {
@@ -95,7 +95,7 @@ class FilialRepository {
                 };
             }
 
-            return await filial.destroy({
+            return await Filial.destroy({
                 where: {
                     id
                 }
