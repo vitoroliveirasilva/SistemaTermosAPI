@@ -6,9 +6,6 @@ const {
     validarDados,
     validarUnicidadeFilial
 } = require('../utils');
-const {
-    filialSchema
-} = require('../validations');
 
 
 class FilialService {
@@ -82,8 +79,6 @@ class FilialService {
                 };
             }
 
-            // Valida os dados de atualização
-            validarDados(dados, filialSchema);
 
             // Verifica se houve mudanças nos dados antes de salvar
             if (!this.#houveAlteracao(filialAtual, dados)) {
