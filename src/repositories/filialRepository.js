@@ -37,13 +37,6 @@ class FilialRepository {
 
     async buscarPorId(id) {
         try {
-            if (!id || isNaN(id) || id <= 0) {
-                throw {
-                    status: 400,
-                    message: 'ID inválido. Deve ser um número positivo.'
-                };
-            }
-
             const filial = await Filial.findByPk(id);
             return filial || null;
         } catch (error) {
