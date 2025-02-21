@@ -87,7 +87,7 @@ describe('Filial Routes', () => {
     test('Deve remover uma filial', async () => {
         const response = await request(app).delete(`/api/filiais/${filialCriada.id}`);
 
-        expect(response.status).toBe(204);
+        expect(response.status).toBe(200);
     });
 
     test('Deve retornar erro `404` ao remover uma filial inexistente', async () => {
