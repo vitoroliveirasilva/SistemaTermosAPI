@@ -96,7 +96,7 @@ class StatusTermoRepository {
                 };
             }
 
-            await statusTermo.destroy();
+            await TermStatus.destroy();
             return {
                 status: 200,
                 message: `Status de termo com ID ${id} removido com sucesso.`
