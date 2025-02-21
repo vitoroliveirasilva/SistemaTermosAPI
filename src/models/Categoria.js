@@ -26,4 +26,6 @@ const Categoria = sequelize.define('Categoria', {
     timestamps: false
 });
 
+Categoria.displayName = 'Categoria';
+
 module.exports = Categoria;

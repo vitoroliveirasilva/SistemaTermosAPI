@@ -23,4 +23,6 @@ const AuthProvider = sequelize.define('AuthProvider', {
     timestamps: false
 });
 
+AuthProvider.displayName = 'Provedor de autenticação';
+
 module.exports = AuthProvider;

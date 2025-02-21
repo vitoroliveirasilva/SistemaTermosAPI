@@ -43,4 +43,6 @@ const HistoricoMovimentacao = sequelize.define('HistoricoMovimentacao', {
     timestamps: false
 });
 
+HistoricoMovimentacao.displayName = 'Histórico de movimentação';
+
 module.exports = HistoricoMovimentacao;

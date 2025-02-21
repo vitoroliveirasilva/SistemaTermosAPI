@@ -36,4 +36,6 @@ const TermStatus = sequelize.define('TermStatus', {
     underscored: true
 });
 
+TermStatus.displayName = 'Status';
+
 module.exports = TermStatus;

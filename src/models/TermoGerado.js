@@ -38,4 +38,6 @@ const TermoGerado = sequelize.define('TermoGerado', {
     timestamps: false
 });
 
+TermoGerado.displayName = 'Termo gerado';
+
 module.exports = TermoGerado;

@@ -23,4 +23,6 @@ const TermType = sequelize.define('TermType', {
     timestamps: false
 });
 
+TermType.displayName = 'Tipo de termo';
+
 module.exports = TermType;

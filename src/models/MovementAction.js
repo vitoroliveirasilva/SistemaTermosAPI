@@ -23,4 +23,6 @@ const MovementAction = sequelize.define('MovementAction', {
     timestamps: false
 });
 
+MovementAction.displayName = 'Ação de movimentação';
+
 module.exports = MovementAction;

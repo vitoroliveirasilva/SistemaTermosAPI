@@ -23,4 +23,6 @@ const EquipamentoStatus = sequelize.define('EquipamentoStatus', {
     timestamps: false
 });
 
+EquipamentoStatus.displayName = 'Status';
+
 module.exports = EquipamentoStatus;

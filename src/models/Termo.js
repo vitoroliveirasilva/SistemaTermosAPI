@@ -57,4 +57,6 @@ const Termo = sequelize.define('Termo', {
     timestamps: false
 });
 
+Termo.displayName = 'Termo';
+
 module.exports = Termo;

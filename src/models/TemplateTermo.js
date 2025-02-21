@@ -27,4 +27,6 @@ const TemplateTermo = sequelize.define('TemplateTermo', {
     timestamps: false
 });
 
+TemplateTermo.displayName = 'Template de termo';
+
 module.exports = TemplateTermo;

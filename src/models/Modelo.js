@@ -38,4 +38,6 @@ const Modelo = sequelize.define('Modelo', {
     timestamps: false
 });
 
+Modelo.displayName = 'Modelo';
+
 module.exports = Modelo;

@@ -40,4 +40,6 @@ const Filial = sequelize.define('Filial', {
     underscored: true
 });
 
+Filial.displayName = 'Filial';
+
 module.exports = Filial;
