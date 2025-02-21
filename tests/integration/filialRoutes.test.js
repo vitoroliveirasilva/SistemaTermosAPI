@@ -70,7 +70,7 @@ describe('Filial Routes', () => {
 
         expect(response.status).toBe(404);
         expect(response.body).toHaveProperty("message");
-        expect(response.body.message).toBe('Filial com ID 999 não encontrada.');
+        expect(response.body.message).toBe('ID 999 não encontrado.');
     });
 
     test('Deve atualizar uma filial', async () => {
@@ -95,6 +95,6 @@ describe('Filial Routes', () => {
 
         expect(response.status).toBe(404);
         expect(response.body).toHaveProperty("message");
-        expect(response.body.message).toBe('Filial com ID 999 não encontrada.');
+        expect(response.body.message).toBe('ID 999 não encontrado.');
     });
 });

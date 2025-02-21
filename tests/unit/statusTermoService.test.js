@@ -46,7 +46,7 @@ describe('statusTermoService', () => {
 
         await expect(statusTermoService.buscarPorId(999)).rejects.toEqual({
             status: 404,
-            message: 'Status com ID 999 não encontrado.'
+            message: 'ID 999 não encontrado.'
         });
     });
 
@@ -78,7 +78,7 @@ describe('statusTermoService', () => {
 
         expect(result).toEqual({
             status: 204,
-            message: "Status com ID 1 removido com sucesso."
+            message: "ID 1 removido com sucesso."
         });
         expect(statusTermoRepository.remover).toHaveBeenCalledWith(1);
     });
@@ -88,7 +88,7 @@ describe('statusTermoService', () => {
 
         await expect(statusTermoService.remover(999)).rejects.toEqual({
             status: 404,
-            message: "Status com ID 999 não encontrado."
+            message: "ID 999 não encontrado."
         });
     });
 });

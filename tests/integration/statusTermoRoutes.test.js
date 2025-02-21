@@ -68,7 +68,7 @@ describe('TermStatus Routes', () => {
 
         expect(response.status).toBe(404);
         expect(response.body).toHaveProperty("message");
-        expect(response.body.message).toBe('Status com ID 999 não encontrado.');
+        expect(response.body.message).toBe('ID 999 não encontrado.');
     });
 
     test('Deve atualizar um status de termo', async () => {
@@ -93,6 +93,6 @@ describe('TermStatus Routes', () => {
 
         expect(response.status).toBe(404);
         expect(response.body).toHaveProperty("message");
-        expect(response.body.message).toBe('Status com ID 999 não encontrado.');
+        expect(response.body.message).toBe('ID 999 não encontrado.');
     });
 });

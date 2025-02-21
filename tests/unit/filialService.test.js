@@ -47,7 +47,7 @@ describe('FilialService', () => {
 
         await expect(filialService.buscarPorId(999)).rejects.toEqual({
             status: 404,
-            message: 'Filial com ID 999 não encontrada.'
+            message: 'ID 999 não encontrado.'
         });
     });
 
@@ -79,7 +79,7 @@ describe('FilialService', () => {
 
         expect(result).toEqual({
             status: 204,
-            message: "Filial com ID 1 removida com sucesso."
+            message: "ID 1 removido com sucesso."
         });
         expect(filialRepository.remover).toHaveBeenCalledWith(1);
     });
@@ -89,7 +89,7 @@ describe('FilialService', () => {
 
         await expect(filialService.remover(999)).rejects.toEqual({
             status: 404,
-            message: "Filial com ID 999 não encontrada."
+            message: "ID 999 não encontrado."
         });
     });
 });
