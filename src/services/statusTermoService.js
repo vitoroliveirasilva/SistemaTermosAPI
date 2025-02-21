@@ -16,10 +16,10 @@ class StatusTermoService {
             // Chama o repository para salvar no banco de dados
             return await statusTermoRepository.criar(dados);
         } catch (error) {
-            console.error('Erro ao criar status dos termo:', error);
+            console.error('Erro ao criar status:', error);
             throw {
                 status: 500,
-                message: 'Erro ao criar status dos termo. Tente novamente mais tarde.',
+                message: 'Erro ao criar status. Tente novamente mais tarde.',
                 error: error.message
             };
         }
@@ -29,10 +29,10 @@ class StatusTermoService {
         try {
             return await statusTermoRepository.listar(filtros);
         } catch (error) {
-            console.error('Erro ao listar status dos termos:', error);
+            console.error('Erro ao listar status:', error);
             throw {
                 status: 500,
-                message: 'Erro ao listar status dos termos. Tente novamente mais tarde.',
+                message: 'Erro ao listar status. Tente novamente mais tarde.',
                 error: error.message
             };
         }
@@ -47,7 +47,7 @@ class StatusTermoService {
             if (!statusTermo) {
                 throw {
                     status: 404,
-                    message: `Status de termos com ID ${id} não encontrado.`
+                    message: `Status com ID ${id} não encontrado.`
                 };
             }
 
@@ -57,10 +57,10 @@ class StatusTermoService {
                 throw error;
             }
 
-            console.error(`Erro inesperado ao buscar o status de termos com ID ${id}:`, error.message || error);
+            console.error(`Erro inesperado ao buscar status com ID ${id}:`, error.message || error);
             throw {
                 status: 500,
-                message: 'Erro ao buscar o status de termos. Tente novamente mais tarde.'
+                message: 'Erro ao buscar status. Tente novamente mais tarde.'
             };
         }
     }
@@ -69,12 +69,12 @@ class StatusTermoService {
         try {
             this.#validarIdOuErro(id);
 
-            // Verifica se o status de termos existe antes de atualizar
+            // Verifica se o status existe antes de atualizar
             const statusTermoAtual = await statusTermoRepository.buscarPorId(id);
             if (!statusTermoAtual) {
                 throw {
                     status: 404,
-                    message: `Status de termos com ID ${id} não encontrado.`
+                    message: `Status com ID ${id} não encontrado.`
                 };
             }
 
@@ -95,13 +95,13 @@ class StatusTermoService {
             if (!this.#houveAlteracao(statusTermoAtual, dados)) {
                 return {
                     status: 200,
-                    message: 'Nenhuma alteração foi feita nos dados do status dos termos.'
+                    message: 'Nenhuma alteração foi feita nos dados do status.'
                 };
             }
 
             return await statusTermoRepository.atualizar(id, dados);
         } catch (error) {
-            console.error(`Erro ao atualizar status de termos com ID ${id}:`, error);
+            console.error(`Erro ao atualizar status com ID ${id}:`, error);
             throw error;
         }
     }
@@ -110,12 +110,12 @@ class StatusTermoService {
         try {
             this.#validarIdOuErro(id);
 
-            // Verifica se o status de termo existe antes de remover
+            // Verifica se o status existe antes de remover
             const statusTermoAtual = await statusTermoRepository.buscarPorId(id);
             if (!statusTermoAtual) {
                 throw {
                     status: 404,
-                    message: `Status de termo com ID ${id} não encontrado.`
+                    message: `Status com ID ${id} não encontrado.`
                 };
             }
 
@@ -123,10 +123,10 @@ class StatusTermoService {
 
             return {
                 status: 200,
-                message: `Status de termo com ID ${id} removido com sucesso.`
+                message: `Status com ID ${id} removido com sucesso.`
             };
         } catch (error) {
-            console.error(`Erro ao remover status de termo com ID ${id}:`, error);
+            console.error(`Erro ao remover status com ID ${id}:`, error);
             throw error;
         }
     }
