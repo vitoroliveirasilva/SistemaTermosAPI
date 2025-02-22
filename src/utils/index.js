@@ -10,11 +10,15 @@ const {
 const {
   validarUnicidadeStatusTermo
 } = require('./statusTermoUtils');
+const {
+  validarUnicidadeCategoria
+} = require('./categoriaUtils');
 
 
 module.exports = {
   validarId,
   validarDados,
   validarUnicidadeFilial,
-  validarUnicidadeStatusTermo
+  validarUnicidadeStatusTermo,
+  validarUnicidadeCategoria
 };
