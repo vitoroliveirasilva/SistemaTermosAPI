@@ -11,6 +11,9 @@ const {
   validarUnicidadeStatusTermo
 } = require('./statusTermoUtils');
 const {
+  validarUnicidadeTemplateTermo
+} = require('./templateTermoUtils');
+const {
   validarUnicidadeStatusEquipamento
 } = require('./statusEquipamentoUtils');
 const {
@@ -23,6 +26,7 @@ module.exports = {
   validarDados,
   validarUnicidadeFilial,
   validarUnicidadeStatusTermo,
+  validarUnicidadeTemplateTermo,
   validarUnicidadeStatusEquipamento,
   validarUnicidadeCategoria
 };
