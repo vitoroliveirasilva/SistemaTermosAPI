@@ -10,21 +10,65 @@ const TemplateTermo = sequelize.define('TemplateTermo', {
         primaryKey: true
     },
     nome: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(50),
         allowNull: false,
-        unique: true
+        unique: {
+            args: true,
+            msg: 'Nome já cadastrado!'
+        },
+        validate: {
+            notEmpty: {
+                msg: "O nome do template não pode ser vazio."
+            },
+            len: {
+                args: [2, 50],
+                msg: "O nome deve ter entre 2 e 50 caracteres."
+            }
+        }
     },
-    conteudo_template: {
+    titulo: {
+        type: DataTypes.STRING(20),
+        allowNull: false,
+        unique: false,
+        validate: {
+            notEmpty: {
+                msg: "O título do template não pode ser vazio."
+            },
+            len: {
+                args: [2, 20],
+                msg: "O título deve ter entre 2 e 20 caracteres."
+            }
+        }
+    },
+    subtitulo: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+        unique: false,
+        validate: {
+            len: {
+                args: [2, 50],
+                msg: "O subtítulo deve ter entre 2 e 50 caracteres."
+            }
+        }
+    },
+    conteudo: {
         type: DataTypes.TEXT,
-        allowNull: false
-    },
-    criadoEm: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        allowNull: false,
+        unique: false,
+        validate: {
+            notEmpty: {
+                msg: "O conteúdo do template não pode ser vazio."
+            },
+            len: {
+                args: [10, 5000],
+                msg: "O conteúdo deve ter entre 10 e 5000 caracteres."
+            }
+        }
     }
 }, {
     tableName: 'templates_termos',
-    timestamps: false
+    timestamps: true,
+    underscored: true
 });
 
 TemplateTermo.displayName = 'Template de termo';
