@@ -116,7 +116,10 @@ class BaseRepository {
     #construirFiltros({
         nome,
         endereco,
-        descricao
+        descricao,
+        titulo,
+        subtitulo,
+        conteudo
     }) {
         const filtros = {};
         if (nome) filtros.nome = {
@@ -127,6 +130,15 @@ class BaseRepository {
         };
         if (descricao) filtros.descricao = {
             [Op.like]: `%${descricao.trim()}%`
+        };
+        if (titulo) filtros.titulo = {
+            [Op.like]: `%${titulo.trim()}%`
+        };
+        if (subtitulo) filtros.subtitulo = {
+            [Op.like]: `%${subtitulo.trim()}%`
+        };
+        if (conteudo) filtros.conteudo = {
+            [Op.like]: `%${conteudo.trim()}%`
         };
         return filtros;
     }
