@@ -7,7 +7,6 @@ const categoriaSchema = Joi.object({
         "string.max": "O nome da categoria deve ter no máximo 50 caracteres."
     }),
     descricao: Joi.string().max(255).optional().messages({
-        "string.empty": "O nome da categoria é obrigatório.",
         "string.max": "O nome da categoria deve ter no máximo 255 caracteres."
     })
 });
