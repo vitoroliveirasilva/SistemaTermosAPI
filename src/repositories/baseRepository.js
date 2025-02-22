@@ -115,7 +115,8 @@ class BaseRepository {
 
     #construirFiltros({
         nome,
-        endereco
+        endereco,
+        descricao
     }) {
         const filtros = {};
         if (nome) filtros.nome = {
@@ -123,6 +124,9 @@ class BaseRepository {
         };
         if (endereco) filtros.endereco = {
             [Op.like]: `%${endereco.trim()}%`
+        };
+        if (descricao) filtros.descricao = {
+            [Op.like]: `%${descricao.trim()}%`
         };
         return filtros;
     }
