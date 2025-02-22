@@ -3,6 +3,7 @@ const validarQueryParamsUsuarios = require('./validacao/validarQueryParamsUsuari
 const validarQueryParamsFiliais = require('./validacao/validarQueryParamsFiliaisMiddleware');
 const validarQueryParamsCategorias = require('./validacao/validarQueryParamsCategoriasMiddleware');
 const validarQueryParamsStatusTermo = require('./validacao/validarQueryParamsStatusTermoMiddleware');
+const validarQueryParamsTemplatesTermos = require('./validacao/validarQueryParamsTemplatesTermosMiddleware');
 const validarQueryParamsStatusEquipamentos = require('./validacao/validarQueryParamsStatusEquipamentosMiddleware');
 const errorHandler = require('./errorHandler');
 
@@ -12,6 +13,7 @@ module.exports = {
   validarQueryParamsFiliais,
   validarQueryParamsCategorias,
   validarQueryParamsStatusTermo,
+  validarQueryParamsTemplatesTermos,
   validarQueryParamsStatusEquipamentos,
   errorHandler
 };
