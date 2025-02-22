@@ -12,15 +12,29 @@ const EquipamentoStatus = sequelize.define('EquipamentoStatus', {
     nome: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        unique: true
+        unique: {
+            args: true,
+            msg: 'Status de equipamento já cadastrado!'
+        },
+        validate: {
+            notEmpty: {
+                msg: "O status de equipamento não pode ser vazio."
+            },
+            len: {
+                args: [2, 50],
+                msg: "O status de equipamento deve ter entre 2 e 50 caracteres."
+            }
+        }
     },
-    criadoEm: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+    descricao: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+        unique: false
     }
 }, {
     tableName: 'equipamento_status',
-    timestamps: false
+    timestamps: true,
+    underscored: true
 });
 
 EquipamentoStatus.displayName = 'Status';
