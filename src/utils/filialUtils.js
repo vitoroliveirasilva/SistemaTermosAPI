@@ -13,7 +13,7 @@ const {
  * @throws {Error} - Erro com status HTTP 400 e mensagem descritiva caso já exista um registro com os mesmos dados.
 */
 async function validarUnicidadeFilial(dados, id = null) {
-    // Validação dos dados com base no schema JOI da filial
+    // Validação dos dados com base no schema JOI
     validarDados(dados, filialSchema);
 
     // Busca todas as filiais com o mesmo nome ou endereço

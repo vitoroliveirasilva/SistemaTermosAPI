@@ -13,7 +13,7 @@ const {
  * @throws {Error} - Erro com status HTTP 400 e mensagem descritiva caso já exista um registro com os mesmos dados.
 */
 async function validarUnicidadeCategoria(dados, id = null) {
-    // Validação dos dados com base no schema JOI da categoria
+    // Validação dos dados com base no schema JOI
     validarDados(dados, categoriaSchema);
 
     // Busca todas as categorias com o mesmo nome
