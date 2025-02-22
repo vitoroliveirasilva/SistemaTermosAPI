@@ -5,6 +5,7 @@ const router = express.Router();
 const usuarioRoutes = require('./usuarioRoutes');
 const filialRoutes = require('./filialRoutes');
 const statusTermoRoutes = require('./statusTermoRoutes');
+const templateTermoRoutes = require('./templateTermoRoutes');
 const statusEquipamentoRoutes = require('./statusEquipamentoRoutes');
 const categoriaRoutes = require('./categoriaRoutes');
 
@@ -12,6 +13,7 @@ const categoriaRoutes = require('./categoriaRoutes');
 router.use('/usuarios', usuarioRoutes);
 router.use('/filiais', filialRoutes);
 router.use('/statustermos', statusTermoRoutes);
+router.use('/templatestermos', templateTermoRoutes);
 router.use('/statusequipamentos', statusEquipamentoRoutes);
 router.use('/categorias', categoriaRoutes);
 
