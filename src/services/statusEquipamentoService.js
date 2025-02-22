@@ -6,7 +6,7 @@ const {
 
 class StatusEquipamentoService extends BaseService {
     constructor() {
-        super(statusEquipamentoRepository, 'StatusEquipamento');
+        super(statusEquipamentoRepository, 'Status');
     }
 
     async criar(dados) {
