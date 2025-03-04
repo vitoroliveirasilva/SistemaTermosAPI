@@ -9,7 +9,6 @@ const Modelo = require('./Modelo');
 const Equipamento = require('./Equipamento');
 const Termo = require('./Termo');
 const HistoricoMovimentacao = require('./HistoricoMovimentacao');
-const AuthProvider = require('./AuthProvider');
 const EquipamentoStatus = require('./EquipamentoStatus');
 const TermType = require('./TermType');
 const TermStatus = require('./TermStatus');
@@ -26,14 +25,6 @@ Usuario.belongsTo(Filial, {
 });
 Filial.hasMany(Usuario, {
   foreignKey: 'filial_id'
-});
-
-// Usuarios e AuthProviders
-Usuario.belongsTo(AuthProvider, {
-  foreignKey: 'auth_provider_id'
-});
-AuthProvider.hasMany(Usuario, {
-  foreignKey: 'auth_provider_id'
 });
 
 // Equipamentos e Modelos
@@ -149,7 +140,6 @@ const models = {
   Equipamento,
   Termo,
   HistoricoMovimentacao,
-  AuthProvider,
   EquipamentoStatus,
   TermType,
   TermStatus,
