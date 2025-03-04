@@ -12,15 +12,34 @@ const MovementAction = sequelize.define('MovementAction', {
     nome: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        unique: true
+        unique: {
+            args: true,
+            msg: 'Ação já cadastrada!'
+        },
+        validate: {
+            notEmpty: {
+                msg: "O nome da ação não pode ser vazio."
+            },
+            len: {
+                args: [2, 50],
+                msg: "O nome da ação deve ter entre 2 a 50 caracteres."
+            }
+        }
     },
-    criadoEm: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+    descricao: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+        validate: {
+            len: {
+                args: [0, 100],
+                msg: "A descrição da ação deve ter no máximo 255 caracteres."
+            }
+        }
     }
 }, {
     tableName: 'movement_actions',
-    timestamps: false
+    timestamps: true,
+    underscored: true
 });
 
 MovementAction.displayName = 'Ação de movimentação';
