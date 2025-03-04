@@ -5,6 +5,7 @@ const validarQueryParamsCategorias = require('./validacao/validarQueryParamsCate
 const validarQueryParamsStatusTermo = require('./validacao/validarQueryParamsStatusTermoMiddleware');
 const validarQueryParamsTemplatesTermos = require('./validacao/validarQueryParamsTemplatesTermosMiddleware');
 const validarQueryParamsStatusEquipamentos = require('./validacao/validarQueryParamsStatusEquipamentosMiddleware');
+const validarQueryParamsAcoesMovimentacoes = require('./validacao/validarQueryParamsAcoesMovimentacoesMiddleware');
 const errorHandler = require('./errorHandler');
 
 module.exports = {
@@ -15,5 +16,6 @@ module.exports = {
   validarQueryParamsStatusTermo,
   validarQueryParamsTemplatesTermos,
   validarQueryParamsStatusEquipamentos,
+  validarQueryParamsAcoesMovimentacoes,
   errorHandler
 };
