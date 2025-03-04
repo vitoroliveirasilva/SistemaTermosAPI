@@ -35,10 +35,6 @@ const Categoria = sequelize.define('Categoria', {
                 msg: "A descrição da categoria deve ter no máximo 255 caracteres."
             }
         }
-    },
-    criadoEm: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
     }
 }, {
     tableName: 'categorias',

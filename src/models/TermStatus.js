@@ -25,10 +25,6 @@ const TermStatus = sequelize.define('TermStatus', {
                 msg: "O nome deve ter entre 2 a 100 caracteres."
             }
         }
-    },
-    criadoEm: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
     }
 }, {
     tableName: 'term_status',
