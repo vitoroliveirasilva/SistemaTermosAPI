@@ -22,7 +22,7 @@ const EquipamentoStatus = sequelize.define('EquipamentoStatus', {
             },
             len: {
                 args: [2, 50],
-                msg: "O status de equipamento deve ter entre 2 e 50 caracteres."
+                msg: "O status de equipamento deve ter entre 2 a 50 caracteres."
             }
         }
     },

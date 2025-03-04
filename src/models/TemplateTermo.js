@@ -22,7 +22,7 @@ const TemplateTermo = sequelize.define('TemplateTermo', {
             },
             len: {
                 args: [2, 50],
-                msg: "O nome deve ter entre 2 e 50 caracteres."
+                msg: "O nome deve ter entre 2 a 50 caracteres."
             }
         }
     },
@@ -36,7 +36,7 @@ const TemplateTermo = sequelize.define('TemplateTermo', {
             },
             len: {
                 args: [2, 20],
-                msg: "O título deve ter entre 2 e 20 caracteres."
+                msg: "O título deve ter entre 2 a 20 caracteres."
             }
         }
     },
@@ -47,7 +47,7 @@ const TemplateTermo = sequelize.define('TemplateTermo', {
         validate: {
             len: {
                 args: [2, 50],
-                msg: "O subtítulo deve ter entre 2 e 50 caracteres."
+                msg: "O subtítulo deve ter entre 2 a 50 caracteres."
             }
         }
     },
@@ -61,7 +61,7 @@ const TemplateTermo = sequelize.define('TemplateTermo', {
             },
             len: {
                 args: [10, 5000],
-                msg: "O conteúdo deve ter entre 10 e 5000 caracteres."
+                msg: "O conteúdo deve ter entre 10 a 5000 caracteres."
             }
         }
     }

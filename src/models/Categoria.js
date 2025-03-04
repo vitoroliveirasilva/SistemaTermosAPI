@@ -22,7 +22,7 @@ const Categoria = sequelize.define('Categoria', {
             },
             len: {
                 args: [2, 50],
-                msg: "O nome da categoria deve ter entre 2 e 50 caracteres."
+                msg: "O nome da categoria deve ter entre 2 a 50 caracteres."
             }
         }
     },

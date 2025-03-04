@@ -22,7 +22,7 @@ const Filial = sequelize.define('Filial', {
             },
             len: {
                 args: [2, 100],
-                msg: "O nome deve ter entre 2 e 100 caracteres."
+                msg: "O nome deve ter entre 2 a 100 caracteres."
             }
         }
     },
@@ -36,7 +36,7 @@ const Filial = sequelize.define('Filial', {
     }
 }, {
     tableName: 'filiais',
-    timestamps: true, // Habilita createdAt e updatedAt
+    timestamps: true,
     underscored: true
 });
 
