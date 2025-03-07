@@ -14,15 +14,15 @@ const TermStatus = sequelize.define('TermStatus', {
         allowNull: false,
         unique: {
             args: true,
-            msg: 'Filial já cadastrada!'
+            msg: 'Status já cadastrado!'
         },
         validate: {
             notEmpty: {
-                msg: "O nome da filial não pode ser vazio."
+                msg: "O nome do status não pode ser vazio."
             },
             len: {
                 args: [2, 100],
-                msg: "O nome deve ter entre 2 a 100 caracteres."
+                msg: "O nome do status deve ter entre 2 a 100 caracteres."
             }
         }
     }
