@@ -5,6 +5,7 @@ const statusEquipamentoSchema = require('./statusEquipamentoSchema');
 const categoriaSchema = require('./categoriaSchema');
 const usuarioSchema = require('./usuarioSchema');
 const acaoMovimentacaoSchema = require('./acaoMovimentacaoSchema');
+const tipoTermoSchema = require('./tipoTermoSchema');
 
 module.exports = {
     filialSchema,
@@ -13,5 +14,6 @@ module.exports = {
     statusEquipamentoSchema,
     categoriaSchema,
     usuarioSchema,
-    acaoMovimentacaoSchema
+    acaoMovimentacaoSchema,
+    tipoTermoSchema
 };
