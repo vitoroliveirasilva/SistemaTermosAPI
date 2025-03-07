@@ -22,6 +22,9 @@ const {
 const {
   validarUnicidadeAcaoMovimentacao
 } = require('./acaoMovimentacaoUtils');
+const {
+  validarUnicidadeTipoTermo
+} = require('./tipoTermoUtils');
 
 
 module.exports = {
@@ -32,5 +35,6 @@ module.exports = {
   validarUnicidadeTemplateTermo,
   validarUnicidadeStatusEquipamento,
   validarUnicidadeCategoria,
-  validarUnicidadeAcaoMovimentacao
+  validarUnicidadeAcaoMovimentacao,
+  validarUnicidadeTipoTermo
 };
