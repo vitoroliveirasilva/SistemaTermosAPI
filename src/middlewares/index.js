@@ -10,6 +10,11 @@ const validarQueryParamsTemplatesTermos = require('./validacao/QueryParams/valid
 const validarQueryParamsStatusEquipamentos = require('./validacao/QueryParams/validarQueryParamsStatusEquipamentos');
 const validarQueryParamsAcoesMovimentacoes = require('./validacao/QueryParams/validarQueryParamsAcoesMovimentacoes');
 const validarQueryParamsTiposTermos = require('./validacao/QueryParams/validarQueryParamsTiposTermos');
+const validarQueryParamsEquipamentos = require('./validacao/QueryParams/validarQueryParamsEquipamentos');
+const validarQueryParamsModelos = require('./validacao/QueryParams/validarQueryParamsModelos');
+const validarQueryParamsHistoricoMovimentacoes = require('./validacao/QueryParams/validarQueryParamsHistoricoMovimentacoes');
+const validarQueryParamsTermos = require('./validacao/QueryParams/validarQueryParamsTermos');
+const validarQueryParamsTermosGerados = require('./validacao/QueryParams/validarQueryParamsTermosGerados');
 
 module.exports = {
   validarIds,
@@ -22,4 +27,9 @@ module.exports = {
   validarQueryParamsStatusEquipamentos,
   validarQueryParamsAcoesMovimentacoes,
   validarQueryParamsTiposTermos,
+  validarQueryParamsEquipamentos,
+  validarQueryParamsModelos,
+  validarQueryParamsHistoricoMovimentacoes,
+  validarQueryParamsTermos,
+  validarQueryParamsTermosGerados
 };
