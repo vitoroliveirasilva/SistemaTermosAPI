@@ -15,16 +15,19 @@ class AcaoMovimentacaoService extends BaseService {
     }
 
     async atualizar(id, dados) {
-        await this.#validarUnicidade(dados);
+        const registroAtual = await super.buscarPorId(id);
+    
+        await this.#validarUnicidade(dados, registroAtual.id);
+    
         return super.atualizar(id, dados);
     }
 
-    async #validarUnicidade(dados) {
-        const errosValidacao = await validarUnicidadeAcaoMovimentacao(dados);
+    async #validarUnicidade(dados, id = null) {
+        const errosValidacao = await validarUnicidadeAcaoMovimentacao(dados, id);
         if (errosValidacao.length > 0) {
             throw {
                 status: 400,
-                message: errosValidacao.length > 1 ? 'Campos duplicados.' : 'Campo duplicado.',
+                message: errosValidacao.map(e => e.mensagem).join(', '),
                 errors: errosValidacao
             };
         }
