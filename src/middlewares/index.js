@@ -1,16 +1,19 @@
-const validarIds = require('./validacao/validarIdsMiddleware');
-const validarQueryParamsUsuarios = require('./validacao/validarQueryParamsUsuariosMiddleware');
-const validarQueryParamsFiliais = require('./validacao/validarQueryParamsFiliaisMiddleware');
-const validarQueryParamsCategorias = require('./validacao/validarQueryParamsCategoriasMiddleware');
-const validarQueryParamsStatusTermo = require('./validacao/validarQueryParamsStatusTermoMiddleware');
-const validarQueryParamsTemplatesTermos = require('./validacao/validarQueryParamsTemplatesTermosMiddleware');
-const validarQueryParamsStatusEquipamentos = require('./validacao/validarQueryParamsStatusEquipamentosMiddleware');
-const validarQueryParamsAcoesMovimentacoes = require('./validacao/validarQueryParamsAcoesMovimentacoesMiddleware');
-const validarQueryParamsTiposTermos = require('./validacao/validarQueryParamsTiposTermosMiddleware');
+const validarIds = require('./validacao/validarIds');
 const errorHandler = require('./errorHandler');
+
+// QueryParams
+const validarQueryParamsUsuarios = require('./validacao/QueryParams/validarQueryParamsUsuarios');
+const validarQueryParamsFiliais = require('./validacao/QueryParams/validarQueryParamsFiliais');
+const validarQueryParamsCategorias = require('./validacao/QueryParams/validarQueryParamsCategorias');
+const validarQueryParamsStatusTermo = require('./validacao/QueryParams/validarQueryParamsStatusTermo');
+const validarQueryParamsTemplatesTermos = require('./validacao/QueryParams/validarQueryParamsTemplatesTermos');
+const validarQueryParamsStatusEquipamentos = require('./validacao/QueryParams/validarQueryParamsStatusEquipamentos');
+const validarQueryParamsAcoesMovimentacoes = require('./validacao/QueryParams/validarQueryParamsAcoesMovimentacoes');
+const validarQueryParamsTiposTermos = require('./validacao/QueryParams/validarQueryParamsTiposTermos');
 
 module.exports = {
   validarIds,
+  errorHandler,
   validarQueryParamsUsuarios,
   validarQueryParamsFiliais,
   validarQueryParamsCategorias,
@@ -19,5 +22,4 @@ module.exports = {
   validarQueryParamsStatusEquipamentos,
   validarQueryParamsAcoesMovimentacoes,
   validarQueryParamsTiposTermos,
-  errorHandler
 };
