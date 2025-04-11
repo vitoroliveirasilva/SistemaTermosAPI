@@ -1,4 +1,6 @@
-const { validarId } = require('../utils/validarId');
+const {
+    validarId
+} = require('../utils/validarId');
 
 class BaseService {
     constructor(repository, nomeEntidade = 'Registro') {
@@ -60,8 +62,16 @@ class BaseService {
     async atualizar(id, dados) {
         try {
             this.#validarIdOuErro(id);
-            
-            if (!this.#houveAlteracao(id, dados)) {
+
+            const registroAtual = await this.repository.buscarPorId(id);
+            if (!registroAtual) {
+                throw {
+                    status: 404,
+                    message: `ID ${id} não encontrado.`
+                };
+            }
+
+            if (!this.#houveAlteracao(registroAtual, dados)) {
                 return {
                     status: 200,
                     message: `Nenhuma alteração foi feita nos dados da ${this.nomeEntidade.toLowerCase()}.`
