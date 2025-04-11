@@ -1,0 +1,104 @@
+tags:
+  - name: Historicomovimentacoes
+    description: Gerenciamento de historicomovimentacoes
+
+paths:
+  /api/historicomovimentacoes:
+    get:
+      summary: Lista todos os registros de historicomovimentacoes
+      tags:
+        - Historicomovimentacoes
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo historicomovimentacoe
+      tags:
+        - Historicomovimentacoes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                equipamento_id:
+                  type: integer
+                usuario_id:
+                  type: integer
+                acao_id:
+                  type: integer
+                data_movimentacao:
+                  type: string
+                observacao:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/historicomovimentacoes/filtros:
+    get:
+      summary: Busca historicomovimentacoes por filtros
+      tags:
+        - Historicomovimentacoes
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/historicomovimentacoes/{id}:
+    get:
+      summary: Busca historicomovimentacoe por ID
+      tags:
+        - Historicomovimentacoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um historicomovimentacoe por ID
+      tags:
+        - Historicomovimentacoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                equipamento_id:
+                  type: integer
+                usuario_id:
+                  type: integer
+                acao_id:
+                  type: integer
+                data_movimentacao:
+                  type: string
+                observacao:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um historicomovimentacoe por ID
+      tags:
+        - Historicomovimentacoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

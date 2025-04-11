@@ -1,0 +1,87 @@
+tags:
+  - name: Filiais
+    description: Gerenciamento de filiais
+
+paths:
+  /api/filiais:
+    get:
+      summary: Lista todos os registros de filiais
+      tags:
+        - Filiais
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo filiai
+      tags:
+        - Filiais
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Filial'
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/filiais/filtros:
+    get:
+      summary: Busca filiais por filtros
+      tags:
+        - Filiais
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/filiais/{id}:
+    get:
+      summary: Busca filiai por ID
+      tags:
+        - Filiais
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um filiai por ID
+      tags:
+        - Filiais
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                endereco:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um filiai por ID
+      tags:
+        - Filiais
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

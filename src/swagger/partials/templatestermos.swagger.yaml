@@ -1,0 +1,100 @@
+tags:
+  - name: Templatestermos
+    description: Gerenciamento de templatestermos
+
+paths:
+  /api/templatestermos:
+    get:
+      summary: Lista todos os registros de templatestermos
+      tags:
+        - Templatestermos
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo templatestermo
+      tags:
+        - Templatestermos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                titulo:
+                  type: string
+                subtitulo:
+                  type: string
+                conteudo:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/templatestermos/filtros:
+    get:
+      summary: Busca templatestermos por filtros
+      tags:
+        - Templatestermos
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/templatestermos/{id}:
+    get:
+      summary: Busca templatestermo por ID
+      tags:
+        - Templatestermos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um templatestermo por ID
+      tags:
+        - Templatestermos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                titulo:
+                  type: string
+                subtitulo:
+                  type: string
+                conteudo:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um templatestermo por ID
+      tags:
+        - Templatestermos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

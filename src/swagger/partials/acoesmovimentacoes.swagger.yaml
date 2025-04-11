@@ -1,0 +1,92 @@
+tags:
+  - name: Acoesmovimentacoes
+    description: Gerenciamento de acoesmovimentacoes
+
+paths:
+  /api/acoesmovimentacoes:
+    get:
+      summary: Lista todos os registros de acoesmovimentacoes
+      tags:
+        - Acoesmovimentacoes
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo acoesmovimentacoe
+      tags:
+        - Acoesmovimentacoes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                descricao:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/acoesmovimentacoes/filtros:
+    get:
+      summary: Busca acoesmovimentacoes por filtros
+      tags:
+        - Acoesmovimentacoes
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/acoesmovimentacoes/{id}:
+    get:
+      summary: Busca acoesmovimentacoe por ID
+      tags:
+        - Acoesmovimentacoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um acoesmovimentacoe por ID
+      tags:
+        - Acoesmovimentacoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                descricao:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um acoesmovimentacoe por ID
+      tags:
+        - Acoesmovimentacoes
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

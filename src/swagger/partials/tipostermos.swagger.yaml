@@ -1,0 +1,92 @@
+tags:
+  - name: Tipostermos
+    description: Gerenciamento de tipostermos
+
+paths:
+  /api/tipostermos:
+    get:
+      summary: Lista todos os registros de tipostermos
+      tags:
+        - Tipostermos
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo tipostermo
+      tags:
+        - Tipostermos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                descricao:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/tipostermos/filtros:
+    get:
+      summary: Busca tipostermos por filtros
+      tags:
+        - Tipostermos
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/tipostermos/{id}:
+    get:
+      summary: Busca tipostermo por ID
+      tags:
+        - Tipostermos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um tipostermo por ID
+      tags:
+        - Tipostermos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                descricao:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um tipostermo por ID
+      tags:
+        - Tipostermos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

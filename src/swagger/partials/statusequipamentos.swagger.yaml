@@ -1,0 +1,92 @@
+tags:
+  - name: Statusequipamentos
+    description: Gerenciamento de statusequipamentos
+
+paths:
+  /api/statusequipamentos:
+    get:
+      summary: Lista todos os registros de statusequipamentos
+      tags:
+        - Statusequipamentos
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo statusequipamento
+      tags:
+        - Statusequipamentos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                descricao:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/statusequipamentos/filtros:
+    get:
+      summary: Busca statusequipamentos por filtros
+      tags:
+        - Statusequipamentos
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/statusequipamentos/{id}:
+    get:
+      summary: Busca statusequipamento por ID
+      tags:
+        - Statusequipamentos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um statusequipamento por ID
+      tags:
+        - Statusequipamentos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                descricao:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um statusequipamento por ID
+      tags:
+        - Statusequipamentos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

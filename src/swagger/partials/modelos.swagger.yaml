@@ -1,0 +1,96 @@
+tags:
+  - name: Modelos
+    description: Gerenciamento de modelos
+
+paths:
+  /api/modelos:
+    get:
+      summary: Lista todos os registros de modelos
+      tags:
+        - Modelos
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo modelo
+      tags:
+        - Modelos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                marca:
+                  type: string
+                modelo:
+                  type: string
+                descricao:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/modelos/filtros:
+    get:
+      summary: Busca modelos por filtros
+      tags:
+        - Modelos
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/modelos/{id}:
+    get:
+      summary: Busca modelo por ID
+      tags:
+        - Modelos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um modelo por ID
+      tags:
+        - Modelos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                marca:
+                  type: string
+                modelo:
+                  type: string
+                descricao:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um modelo por ID
+      tags:
+        - Modelos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

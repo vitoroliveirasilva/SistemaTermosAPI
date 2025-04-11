@@ -1,0 +1,100 @@
+tags:
+  - name: Usuarios
+    description: Gerenciamento de usuarios
+
+paths:
+  /api/usuarios:
+    get:
+      summary: Lista todos os registros de usuarios
+      tags:
+        - Usuarios
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo usuario
+      tags:
+        - Usuarios
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+                status:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/usuarios/filtros:
+    get:
+      summary: Busca usuarios por filtros
+      tags:
+        - Usuarios
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/usuarios/{id}:
+    get:
+      summary: Busca usuario por ID
+      tags:
+        - Usuarios
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um usuario por ID
+      tags:
+        - Usuarios
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+                status:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um usuario por ID
+      tags:
+        - Usuarios
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

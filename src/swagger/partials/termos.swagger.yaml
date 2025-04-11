@@ -1,0 +1,116 @@
+tags:
+  - name: Termos
+    description: Gerenciamento de termos
+
+paths:
+  /api/termos:
+    get:
+      summary: Lista todos os registros de termos
+      tags:
+        - Termos
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo termo
+      tags:
+        - Termos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario_id:
+                  type: integer
+                equipamento_id:
+                  type: integer
+                criador_id:
+                  type: integer
+                tipo_id:
+                  type: integer
+                status_id:
+                  type: integer
+                data_criacao:
+                  type: string
+                data_assinatura:
+                  type: string
+                observacao:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/termos/filtros:
+    get:
+      summary: Busca termos por filtros
+      tags:
+        - Termos
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/termos/{id}:
+    get:
+      summary: Busca termo por ID
+      tags:
+        - Termos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um termo por ID
+      tags:
+        - Termos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario_id:
+                  type: integer
+                equipamento_id:
+                  type: integer
+                criador_id:
+                  type: integer
+                tipo_id:
+                  type: integer
+                status_id:
+                  type: integer
+                data_criacao:
+                  type: string
+                data_assinatura:
+                  type: string
+                observacao:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um termo por ID
+      tags:
+        - Termos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

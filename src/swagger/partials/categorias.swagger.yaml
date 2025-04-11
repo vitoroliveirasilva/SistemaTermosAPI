@@ -1,0 +1,92 @@
+tags:
+  - name: Categorias
+    description: Gerenciamento de categorias
+
+paths:
+  /api/categorias:
+    get:
+      summary: Lista todos os registros de categorias
+      tags:
+        - Categorias
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo categoria
+      tags:
+        - Categorias
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                descricao:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/categorias/filtros:
+    get:
+      summary: Busca categorias por filtros
+      tags:
+        - Categorias
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/categorias/{id}:
+    get:
+      summary: Busca categoria por ID
+      tags:
+        - Categorias
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um categoria por ID
+      tags:
+        - Categorias
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                descricao:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um categoria por ID
+      tags:
+        - Categorias
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

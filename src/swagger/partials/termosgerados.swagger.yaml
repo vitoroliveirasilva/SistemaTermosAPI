@@ -1,0 +1,100 @@
+tags:
+  - name: Termosgerados
+    description: Gerenciamento de termosgerados
+
+paths:
+  /api/termosgerados:
+    get:
+      summary: Lista todos os registros de termosgerados
+      tags:
+        - Termosgerados
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo termosgerado
+      tags:
+        - Termosgerados
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                termo_id:
+                  type: integer
+                template_id:
+                  type: integer
+                caminho_pdf:
+                  type: string
+                data_geracao:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/termosgerados/filtros:
+    get:
+      summary: Busca termosgerados por filtros
+      tags:
+        - Termosgerados
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/termosgerados/{id}:
+    get:
+      summary: Busca termosgerado por ID
+      tags:
+        - Termosgerados
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um termosgerado por ID
+      tags:
+        - Termosgerados
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                termo_id:
+                  type: integer
+                template_id:
+                  type: integer
+                caminho_pdf:
+                  type: string
+                data_geracao:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um termosgerado por ID
+      tags:
+        - Termosgerados
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso

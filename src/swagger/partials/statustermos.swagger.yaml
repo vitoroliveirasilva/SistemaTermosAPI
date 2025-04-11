@@ -1,0 +1,88 @@
+tags:
+  - name: Statustermos
+    description: Gerenciamento de statustermos
+
+paths:
+  /api/statustermos:
+    get:
+      summary: Lista todos os registros de statustermos
+      tags:
+        - Statustermos
+      responses:
+        200:
+          description: Lista retornada com sucesso
+    post:
+      summary: Cria um novo statustermo
+      tags:
+        - Statustermos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+      responses:
+        201:
+          description: Registro criado com sucesso
+
+  /api/statustermos/filtros:
+    get:
+      summary: Busca statustermos por filtros
+      tags:
+        - Statustermos
+      responses:
+        200:
+          description: Registros filtrados com sucesso
+
+  /api/statustermos/{id}:
+    get:
+      summary: Busca statustermo por ID
+      tags:
+        - Statustermos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro encontrado
+    put:
+      summary: Atualiza um statustermo por ID
+      tags:
+        - Statustermos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+      responses:
+        200:
+          description: Registro atualizado com sucesso
+    delete:
+      summary: Remove um statustermo por ID
+      tags:
+        - Statustermos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Registro removido com sucesso
