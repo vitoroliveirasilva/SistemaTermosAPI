@@ -32,15 +32,24 @@ const Equipamento = sequelize.define('Equipamento', {
     numero_serie: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        unique: true
+        unique: {
+            args: true,
+            msg: 'Número de série já cadastrado!'
+        },
+        validate: {
+            notEmpty: {
+                msg: "O número de série não pode ser vazio."
+            },
+            len: {
+                args: [2, 50],
+                msg: "O número de série deve ter entre 2 a 50 caracteres."
+            }
+        }
     },
-    criadoEm: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    }
 }, {
     tableName: 'equipamentos',
-    timestamps: false
+    timestamps: true,
+    underscored: true
 });
 
 Equipamento.displayName = 'Equipamento';

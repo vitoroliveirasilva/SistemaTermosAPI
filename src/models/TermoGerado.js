@@ -35,7 +35,8 @@ const TermoGerado = sequelize.define('TermoGerado', {
     }
 }, {
     tableName: 'termos_gerados',
-    timestamps: false
+    timestamps: true,
+    underscored: true
 });
 
 TermoGerado.displayName = 'Termo gerado';

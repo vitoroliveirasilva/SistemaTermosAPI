@@ -34,13 +34,15 @@ const HistoricoMovimentacao = sequelize.define('HistoricoMovimentacao', {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
     },
-    observacoes: {
+    observacao: {
         type: DataTypes.TEXT,
-        allowNull: true
+        allowNull: true,
+        unique: false
     }
 }, {
     tableName: 'historico_movimentacoes',
-    timestamps: false
+    timestamps: true,
+    underscored: true
 });
 
 HistoricoMovimentacao.displayName = 'Histórico de movimentação';

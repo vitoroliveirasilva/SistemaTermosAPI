@@ -48,13 +48,15 @@ const Termo = sequelize.define('Termo', {
         type: DataTypes.DATE,
         allowNull: true
     },
-    observacoes: {
+    observacao: {
         type: DataTypes.TEXT,
-        allowNull: true
+        allowNull: true,
+        unique: false
     }
 }, {
     tableName: 'termos',
-    timestamps: false
+    timestamps: true,
+    underscored: true
 });
 
 Termo.displayName = 'Termo';
