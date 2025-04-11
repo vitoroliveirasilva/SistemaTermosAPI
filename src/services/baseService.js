@@ -60,16 +60,8 @@ class BaseService {
     async atualizar(id, dados) {
         try {
             this.#validarIdOuErro(id);
-
-            const registroAtual = await this.repository.buscarPorId(id);
-            if (!registroAtual) {
-                throw {
-                    status: 404,
-                    message: `ID ${id} não encontrado.`
-                };
-            }
-
-            if (!this.#houveAlteracao(registroAtual, dados)) {
+            
+            if (!this.#houveAlteracao(id, dados)) {
                 return {
                     status: 200,
                     message: `Nenhuma alteração foi feita nos dados da ${this.nomeEntidade.toLowerCase()}.`
