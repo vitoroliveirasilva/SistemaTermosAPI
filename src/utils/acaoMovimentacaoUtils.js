@@ -21,8 +21,15 @@ async function validarUnicidadeAcaoMovimentacao(dados, id = null) {
         nome: dados.nome
     });
 
+    console.log('Ações de movimentação existentes:', acoesMovimentacoesExistentes);
+    console.log('ID recebido:', id);
+
     // Filtra os registros encontrados, ignorando o ID atual (só se houver um id pra ser filtrado)
-    const acoesMovimentacoesFiltradas = acoesMovimentacoesExistentes.filter(acaoMovimentacao => acaoMovimentacao.id !== id);
+    const acoesMovimentacoesFiltradas = acoesMovimentacoesExistentes.filter(acaoMovimentacao => 
+        Number(acaoMovimentacao.id) !== Number(id)
+    );
+
+    console.log('Ações de movimentação filtradas:', acoesMovimentacoesFiltradas);
 
     // Verifica conflitos
     const erros = [];
