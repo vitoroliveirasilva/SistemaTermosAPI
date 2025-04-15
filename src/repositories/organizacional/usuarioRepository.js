@@ -1,6 +1,6 @@
 const {
   Usuario
-} = require('../models');
+} = require('../../models');
 const {
   Op
 } = require('sequelize');
@@ -59,7 +59,7 @@ class UsuarioRepository {
   /*
    * Método usado para buscar um usuário e incluir a senha
    * Utilizado apenas quando realmente necessário, como autenticação
-  */
+   */
   async buscarComSenha(email) {
     try {
       return await Usuario.scope('withPassword').findOne({
@@ -134,7 +134,7 @@ class UsuarioRepository {
    * Método privado para construir filtros dinâmicos para busca
    * @param {Object} filtros - Objeto contendo os filtros (nome, email, status)
    * @returns {Object} - Objeto de filtros formatado para Sequelize
-  */
+   */
   #construirFiltros({
     nome,
     email,
@@ -157,7 +157,7 @@ class UsuarioRepository {
    * Método privado para remover a senha de um usuário antes de retornar os dados
    * @param {Object} usuario - Objeto do usuário retornado pelo banco
    * @returns {Object} - Objeto sem a senha
-  */
+   */
   #removerSenha(usuario) {
     if (!usuario) return null;
     const {
