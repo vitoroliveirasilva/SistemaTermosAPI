@@ -1,19 +1,41 @@
-const filialSchema = require('./filialSchema');
-const statusTermoSchema = require('./statusTermoSchema');
-const templateTermoSchema = require('./templateTermoSchema');
-const statusEquipamentoSchema = require('./statusEquipamentoSchema');
-const categoriaSchema = require('./categoriaSchema');
-const usuarioSchema = require('./usuarioSchema');
-const acaoMovimentacaoSchema = require('./acaoMovimentacaoSchema');
-const tipoTermoSchema = require('./tipoTermoSchema');
+// === Importações de Schemas ===
+
+// Equipamento
+const categoriaSchema = require('./equipamento/categoriaSchema');
+const equipamentoSchema = require('./equipamento/equipamentoSchema');
+const equipamentoStatusSchema = require('./equipamento/equipamentoStatusSchema');
+const modeloSchema = require('./equipamento/modeloSchema');
+
+// Histórico
+const movimentacaoAcaoSchema = require('./historico/movimentacaoAcaoSchema');
+const movimentacaoHistoricoSchema = require('./historico/movimentacaoHistoricoSchema');
+
+// Organizacional
+const filialSchema = require('./organizacional/filialSchema');
+const usuarioSchema = require('./organizacional/usuarioSchema');
+
+// Pdf
+const termoGeradoSchema = require('./pdf/termoGeradoSchema');
+const termoTemplateSchema = require('./pdf/termoTemplateSchema');
+
+// Termo
+const termoSchema = require('./termo/termoSchema');
+const termoStatusSchema = require('./termo/termoStatusSchema');
+const termoTipoSchema = require('./termo/termoTipoSchema');
+
 
 module.exports = {
-    filialSchema,
-    statusTermoSchema,
-    templateTermoSchema,
-    statusEquipamentoSchema,
     categoriaSchema,
+    equipamentoSchema,
+    equipamentoStatusSchema,
+    modeloSchema,
+    movimentacaoAcaoSchema,
+    movimentacaoHistoricoSchema,
+    filialSchema,
     usuarioSchema,
-    acaoMovimentacaoSchema,
-    tipoTermoSchema
+    termoGeradoSchema,
+    termoTemplateSchema,
+    termoSchema,
+    termoStatusSchema,
+    termoTipoSchema
 };
