@@ -1,6 +1,6 @@
 const {
     validarId
-} = require('../utils/validarId');
+} = require('../utils/validacaoId');
 
 class BaseService {
     constructor(repository, nomeEntidade = 'Registro') {
