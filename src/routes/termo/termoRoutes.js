@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const termoController = require('../controllers/termoController');
+const termoController = require('../../controllers/termo/termoController');
 const {
     validarIds,
-    validarQueryParamsTermos
-} = require('../middlewares');
+    validarQueryParamsTermo
+} = require('../../middlewares');
 
 
 // Rotas get
 router.get('/', termoController.listar);
-router.get('/filtros', validarQueryParamsTermos, termoController.buscarPorFiltros);
+router.get('/filtros', validarQueryParamsTermo, termoController.buscarPorFiltros);
 router.get('/:id', validarIds, termoController.buscarPorId);
 
 // Rotas post

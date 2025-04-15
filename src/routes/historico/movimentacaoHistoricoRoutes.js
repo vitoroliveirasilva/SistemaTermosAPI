@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const historicoMovimentacaoController = require('../controllers/historicoMovimentacaoController');
+const historicoMovimentacaoController = require('../../controllers/historico/movimentacaoHistoricoController');
 const {
     validarIds,
-    validarQueryParamsHistoricoMovimentacoes
-} = require('../middlewares');
+    validarQueryParamsMovimentacaoHistorico
+} = require('../../middlewares');
 
 
 // Rotas get
 router.get('/', historicoMovimentacaoController.listar);
-router.get('/filtros', validarQueryParamsHistoricoMovimentacoes, historicoMovimentacaoController.buscarPorFiltros);
+router.get('/filtros', validarQueryParamsMovimentacaoHistorico, historicoMovimentacaoController.buscarPorFiltros);
 router.get('/:id', validarIds, historicoMovimentacaoController.buscarPorId);
 
 // Rotas post

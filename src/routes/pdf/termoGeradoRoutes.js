@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const termoGeradoController = require('../controllers/termoGeradoController');
+const termoGeradoController = require('../../controllers/pdf/termoGeradoController');
 const {
     validarIds,
-    validarQueryParamsTermosGerados
-} = require('../middlewares');
+    validarQueryParamsTermoGerado
+} = require('../../middlewares');
 
 
 // Rotas get
 router.get('/', termoGeradoController.listar);
-router.get('/filtros', validarQueryParamsTermosGerados, termoGeradoController.buscarPorFiltros);
+router.get('/filtros', validarQueryParamsTermoGerado, termoGeradoController.buscarPorFiltros);
 router.get('/:id', validarIds, termoGeradoController.buscarPorId);
 
 // Rotas post

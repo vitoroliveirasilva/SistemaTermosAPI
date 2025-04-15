@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const acaoMovimentacaoController = require('../controllers/acaoMovimentacaoController');
+const acaoMovimentacaoController = require('../../controllers/historico/movimentacaoAcaoController');
 const {
     validarIds,
-    validarQueryParamsAcoesMovimentacoes
-} = require('../middlewares');
+    validarQueryParamsMovimentacaoAcao
+} = require('../../middlewares');
 
 
 // Rotas get
 router.get('/', acaoMovimentacaoController.listar);
-router.get('/filtros', validarQueryParamsAcoesMovimentacoes, acaoMovimentacaoController.buscarPorFiltros);
+router.get('/filtros', validarQueryParamsMovimentacaoAcao, acaoMovimentacaoController.buscarPorFiltros);
 router.get('/:id', validarIds, acaoMovimentacaoController.buscarPorId);
 
 // Rotas post

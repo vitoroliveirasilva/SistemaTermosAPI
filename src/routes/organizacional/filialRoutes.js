@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const filialController = require('../controllers/filialController');
+const filialController = require('../../controllers/organizacional/filialController');
 const {
     validarIds,
-    validarQueryParamsFiliais
-} = require('../middlewares');
+    validarQueryParamsFilial
+} = require('../../middlewares');
 
 
 // Rotas get
 router.get('/', filialController.listar);
-router.get('/filtros', validarQueryParamsFiliais, filialController.buscarPorFiltros);
+router.get('/filtros', validarQueryParamsFilial, filialController.buscarPorFiltros);
 router.get('/:id', validarIds, filialController.buscarPorId);
 
 // Rotas post

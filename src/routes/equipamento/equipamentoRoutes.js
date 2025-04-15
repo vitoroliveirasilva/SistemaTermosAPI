@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const equipamentoController = require('../controllers/equipamentoController');
+const equipamentoController = require('../../controllers/equipamento/equipamentoController');
 const {
     validarIds,
-    validarQueryParamsEquipamentos
-} = require('../middlewares');
+    validarQueryParamsEquipamento
+} = require('../../middlewares');
 
 
 // Rotas get
 router.get('/', equipamentoController.listar);
-router.get('/filtros', validarQueryParamsEquipamentos, equipamentoController.buscarPorFiltros);
+router.get('/filtros', validarQueryParamsEquipamento, equipamentoController.buscarPorFiltros);
 router.get('/:id', validarIds, equipamentoController.buscarPorId);
 
 // Rotas post
