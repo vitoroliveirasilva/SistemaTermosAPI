@@ -39,7 +39,7 @@ describe('Filial Routes', () => {
 
     test('Deve criar uma filial', async () => {
         const response = await request(app)
-            .post('/api/filiais')
+            .post('/api/filial')
             .send({
                 nome: "Nova Filial",
                 endereco: "Rua Nova, 456"
@@ -51,7 +51,7 @@ describe('Filial Routes', () => {
     });
 
     test('Deve listar todas as filiais', async () => {
-        const response = await request(app).get('/api/filiais');
+        const response = await request(app).get('/api/filial');
 
         expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBe(true);
@@ -59,14 +59,14 @@ describe('Filial Routes', () => {
     });
 
     test('Deve buscar uma filial por ID', async () => {
-        const response = await request(app).get(`/api/filiais/${filialCriada.id}`);
+        const response = await request(app).get(`/api/filial/${filialCriada.id}`);
 
         expect(response.status).toBe(200);
         expect(response.body.id).toBe(filialCriada.id);
     });
 
     test('Deve retornar erro `404` ao buscar uma filial inexistente', async () => {
-        const response = await request(app).get('/api/filiais/999');
+        const response = await request(app).get('/api/filial/999');
 
         expect(response.status).toBe(404);
         expect(response.body).toHaveProperty("message");
@@ -75,7 +75,7 @@ describe('Filial Routes', () => {
 
     test('Deve atualizar uma filial', async () => {
         const response = await request(app)
-            .put(`/api/filiais/${filialCriada.id}`)
+            .put(`/api/filial/${filialCriada.id}`)
             .send({
                 nome: "Filial Atualizada"
             });
@@ -85,13 +85,13 @@ describe('Filial Routes', () => {
     });
 
     test('Deve remover uma filial', async () => {
-        const response = await request(app).delete(`/api/filiais/${filialCriada.id}`);
+        const response = await request(app).delete(`/api/filial/${filialCriada.id}`);
 
         expect(response.status).toBe(204);
     });
 
     test('Deve retornar erro `404` ao remover uma filial inexistente', async () => {
-        const response = await request(app).delete('/api/filiais/999');
+        const response = await request(app).delete('/api/filial/999');
 
         expect(response.status).toBe(404);
         expect(response.body).toHaveProperty("message");

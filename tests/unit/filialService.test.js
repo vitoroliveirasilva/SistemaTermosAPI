@@ -1,7 +1,7 @@
-const filialService = require('../../src/services/filialService');
-const filialRepository = require('../../src/repositories/filialRepository');
+const filialService = require('../../src/services/organizacional/filialService');
+const filialRepository = require('../../src/repositories/organizacional/filialRepository');
 
-jest.mock('../../src/repositories/filialRepository');
+jest.mock('../../src/repositories/organizacional/filialRepository');
 
 describe('FilialService', () => {
     const filialMock = {
