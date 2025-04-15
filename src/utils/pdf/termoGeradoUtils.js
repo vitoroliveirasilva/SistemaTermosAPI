@@ -1,9 +1,9 @@
 const {
     termoGeradoSchema
-} = require('../validations');
+} = require('../../validations');
 const {
     validarDados
-} = require('./validator');
+} = require('../validacaoUnicidadeGenerica');
 
 /*
  * Valida os dados de um termo gerado com base no schema definido.

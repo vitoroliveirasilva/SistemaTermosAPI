@@ -1,40 +1,48 @@
-const {
-  validarId
-} = require('./validarId');
-const {
-  validarDados
-} = require('./validator');
-const {
-  validarUnicidadeFilial
-} = require('./filialUtils');
-const {
-  validarUnicidadeStatusTermo
-} = require('./statusTermoUtils');
-const {
-  validarUnicidadeTemplateTermo
-} = require('./templateTermoUtils');
-const {
-  validarUnicidadeStatusEquipamento
-} = require('./statusEquipamentoUtils');
-const {
-  validarUnicidadeCategoria
-} = require('./categoriaUtils');
-const {
-  validarUnicidadeAcaoMovimentacao
-} = require('./acaoMovimentacaoUtils');
-const {
-  validarUnicidadeTipoTermo
-} = require('./tipoTermoUtils');
+// Validaçõs gerais
+const { validarId } = require('./validacaoId');
+const { validarDados } = require('./validacaoSchema');
+const { validarUnicidadeGenerica } = require('./validacaoUnicidadeGenerica');
+
+
+// === Validações por entidade ===
+
+// Equipamento
+const { validarUnicidadeCategoria } = require('./equipamento/categoriaUtils');
+const { validarUnicidadeEquipamento } = require('./equipamento/equipamentoUtils');
+const { validarUnicidadeEquipamentoStatus } = require('./equipamento/equipamentoStatusUtils');
+const { validarUnicidadeModelo } = require('./equipamento/modeloUtils');
+
+// Histórico
+const { validarUnicidadeMovimentacaoAcao } = require('./historico/movimentacaoAcaoUtils');
+const { validarUnicidadeMovimentacaoHistorico } = require('./historico/movimentacaoHistoricoUtils');
+
+// Organizacional
+const { validarUnicidadeFilial } = require('./organizacional/filialUtils');
+
+// Pdf
+const { validarUnicidadeTermoGerado } = require('./pdf/termoGeradoUtils');
+const { validarUnicidadeTermoTemplate } = require('./pdf/termoTemplateUtils');
+
+// Termo
+const { validarUnicidadeTermoStatus } = require('./termo/termoStatusUtils');
+const { validarUnicidadeTermoTipo } = require('./termo/termoTipoUtils');
+const { validarUnicidadeTermo } = require('./termo/termoUtils');
 
 
 module.exports = {
   validarId,
   validarDados,
-  validarUnicidadeFilial,
-  validarUnicidadeStatusTermo,
-  validarUnicidadeTemplateTermo,
-  validarUnicidadeStatusEquipamento,
+  validarUnicidadeGenerica,
   validarUnicidadeCategoria,
-  validarUnicidadeAcaoMovimentacao,
-  validarUnicidadeTipoTermo
+  validarUnicidadeEquipamento,
+  validarUnicidadeEquipamentoStatus,
+  validarUnicidadeModelo,
+  validarUnicidadeMovimentacaoAcao,
+  validarUnicidadeMovimentacaoHistorico,
+  validarUnicidadeFilial,
+  validarUnicidadeTermoGerado,
+  validarUnicidadeTermoTemplate,
+  validarUnicidadeTermoStatus,
+  validarUnicidadeTermoTipo,
+  validarUnicidadeTermo
 };
