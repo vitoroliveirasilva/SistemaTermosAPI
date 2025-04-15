@@ -1,4 +1,4 @@
-const validarQueryParams = require('../QueryParams/validarQueryParams');
+const validarQueryParams = require('../validarQueryParams');
 
 module.exports = validarQueryParams(
   ['nome', 'endereco'],
