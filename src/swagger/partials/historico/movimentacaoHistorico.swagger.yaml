@@ -1,20 +1,20 @@
 tags:
-  - name: Termos
-    description: Gerenciamento de termos
+  - name: Movimentação de estoque - Histórico
+    description: Gerenciamento de histórico de movimentações de estoque
 
 paths:
-  /api/termos:
+  /api/historicomovimentacoes:
     get:
-      summary: Lista todos os registros de termos
+      summary: Lista o histórico de movimentações de estoque
       tags:
-        - Termos
+        - Movimentação de estoque - Histórico
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo termo
+      summary: Cria um novo registro no histórico
       tags:
-        - Termos
+        - Movimentação de estoque - Histórico
       requestBody:
         required: true
         content:
@@ -22,19 +22,13 @@ paths:
             schema:
               type: object
               properties:
-                usuario_id:
-                  type: integer
                 equipamento_id:
                   type: integer
-                criador_id:
+                usuario_id:
                   type: integer
-                tipo_id:
+                acao_id:
                   type: integer
-                status_id:
-                  type: integer
-                data_criacao:
-                  type: string
-                data_assinatura:
+                data_movimentacao:
                   type: string
                 observacao:
                   type: string
@@ -42,20 +36,20 @@ paths:
         201:
           description: Registro criado com sucesso
 
-  /api/termos/filtros:
+  /api/historicomovimentacoes/filtros:
     get:
-      summary: Busca termos por filtros
+      summary: Busca registros do histórico por filtros
       tags:
-        - Termos
+        - Movimentação de estoque - Histórico
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/termos/{id}:
+  /api/historicomovimentacoes/{id}:
     get:
-      summary: Busca termo por ID
+      summary: Busca registro do histórico por ID
       tags:
-        - Termos
+        - Movimentação de estoque - Histórico
       parameters:
         - in: path
           name: id
@@ -66,9 +60,9 @@ paths:
         200:
           description: Registro encontrado
     put:
-      summary: Atualiza um termo por ID
+      summary: Atualiza um registro do histórico por ID
       tags:
-        - Termos
+        - Movimentação de estoque - Histórico
       parameters:
         - in: path
           name: id
@@ -82,19 +76,13 @@ paths:
             schema:
               type: object
               properties:
-                usuario_id:
-                  type: integer
                 equipamento_id:
                   type: integer
-                criador_id:
+                usuario_id:
                   type: integer
-                tipo_id:
+                acao_id:
                   type: integer
-                status_id:
-                  type: integer
-                data_criacao:
-                  type: string
-                data_assinatura:
+                data_movimentacao:
                   type: string
                 observacao:
                   type: string
@@ -102,9 +90,9 @@ paths:
         200:
           description: Registro atualizado com sucesso
     delete:
-      summary: Remove um termo por ID
+      summary: Remove um registro do histórico por ID
       tags:
-        - Termos
+        - Movimentação de estoque - Histórico
       parameters:
         - in: path
           name: id

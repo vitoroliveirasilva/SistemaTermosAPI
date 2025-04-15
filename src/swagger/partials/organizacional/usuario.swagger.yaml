@@ -1,20 +1,20 @@
 tags:
-  - name: Modelos
-    description: Gerenciamento de modelos
+  - name: Usuário
+    description: Gerenciamento de usuários
 
 paths:
-  /api/modelos:
+  /api/usuarios:
     get:
-      summary: Lista todos os registros de modelos
+      summary: Lista todos os registros de usuários
       tags:
-        - Modelos
+        - Usuário
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo modelo
+      summary: Cria um novo usuario
       tags:
-        - Modelos
+        - Usuário
       requestBody:
         required: true
         content:
@@ -22,30 +22,32 @@ paths:
             schema:
               type: object
               properties:
-                marca:
+                nome:
                   type: string
-                modelo:
+                email:
                   type: string
-                descricao:
+                senha:
+                  type: string
+                status:
                   type: string
       responses:
         201:
           description: Registro criado com sucesso
 
-  /api/modelos/filtros:
+  /api/usuarios/filtros:
     get:
-      summary: Busca modelos por filtros
+      summary: Busca usuarios por filtros
       tags:
-        - Modelos
+        - Usuário
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/modelos/{id}:
+  /api/usuarios/{id}:
     get:
-      summary: Busca modelo por ID
+      summary: Busca usuario por ID
       tags:
-        - Modelos
+        - Usuário
       parameters:
         - in: path
           name: id
@@ -56,9 +58,9 @@ paths:
         200:
           description: Registro encontrado
     put:
-      summary: Atualiza um modelo por ID
+      summary: Atualiza um usuario por ID
       tags:
-        - Modelos
+        - Usuário
       parameters:
         - in: path
           name: id
@@ -72,19 +74,21 @@ paths:
             schema:
               type: object
               properties:
-                marca:
+                nome:
                   type: string
-                modelo:
+                email:
                   type: string
-                descricao:
+                senha:
+                  type: string
+                status:
                   type: string
       responses:
         200:
           description: Registro atualizado com sucesso
     delete:
-      summary: Remove um modelo por ID
+      summary: Remove um usuario por ID
       tags:
-        - Modelos
+        - Usuário
       parameters:
         - in: path
           name: id

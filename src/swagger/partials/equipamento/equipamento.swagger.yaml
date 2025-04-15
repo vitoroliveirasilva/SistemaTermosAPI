@@ -1,44 +1,47 @@
 tags:
-  - name: Filiais
-    description: Gerenciamento de filiais
+  - name: Equipamentos
+    description: Gerenciamento de equipamentos
 
 paths:
-  /api/filiais:
+  /api/equipamento:
     get:
-      summary: Lista todos os registros de filiais
+      summary: Lista todos os equipamentos
       tags:
-        - Filiais
+        - Equipamentos
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo filiai
+      summary: Cadastra um novo equipamento
       tags:
-        - Filiais
+        - Equipamentos
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Filial'
+              type: object
+              properties:
+                numero_serie:
+                  type: string
       responses:
         201:
-          description: Registro criado com sucesso
+          description: Equipamento cadastrado com sucesso
 
-  /api/filiais/filtros:
+  /api/equipamento/filtros:
     get:
-      summary: Busca filiais por filtros
+      summary: Busca equipamentos por filtros
       tags:
-        - Filiais
+        - Equipamentos
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/filiais/{id}:
+  /api/equipamento/{id}:
     get:
-      summary: Busca filiai por ID
+      summary: Busca equipamento por ID
       tags:
-        - Filiais
+        - Equipamentos
       parameters:
         - in: path
           name: id
@@ -47,11 +50,11 @@ paths:
             type: integer
       responses:
         200:
-          description: Registro encontrado
+          description: Equipamento encontrado
     put:
-      summary: Atualiza um filiai por ID
+      summary: Atualiza um equipamento por ID
       tags:
-        - Filiais
+        - Equipamentos
       parameters:
         - in: path
           name: id
@@ -65,17 +68,15 @@ paths:
             schema:
               type: object
               properties:
-                nome:
-                  type: string
-                endereco:
+                numero_serie:
                   type: string
       responses:
         200:
-          description: Registro atualizado com sucesso
+          description: Equipamento atualizado com sucesso
     delete:
-      summary: Remove um filiai por ID
+      summary: Remove um equipamento por ID
       tags:
-        - Filiais
+        - Equipamentos
       parameters:
         - in: path
           name: id
@@ -84,4 +85,4 @@ paths:
             type: integer
       responses:
         200:
-          description: Registro removido com sucesso
+          description: Equipamento removido com sucesso

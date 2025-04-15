@@ -1,20 +1,20 @@
 tags:
-  - name: Templatestermos
-    description: Gerenciamento de templatestermos
+  - name: Status de equipamento
+    description: Gerenciamento de status de equipamentos
 
 paths:
-  /api/templatestermos:
+  /api/statusequipamentos:
     get:
-      summary: Lista todos os registros de templatestermos
+      summary: Lista todos os status de equipamentos
       tags:
-        - Templatestermos
+        - Status de equipamento
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo templatestermo
+      summary: Cria um novo status de equipamento
       tags:
-        - Templatestermos
+        - Status de equipamento
       requestBody:
         required: true
         content:
@@ -24,30 +24,26 @@ paths:
               properties:
                 nome:
                   type: string
-                titulo:
-                  type: string
-                subtitulo:
-                  type: string
-                conteudo:
+                descricao:
                   type: string
       responses:
         201:
-          description: Registro criado com sucesso
+          description: Status criado com sucesso
 
-  /api/templatestermos/filtros:
+  /api/statusequipamentos/filtros:
     get:
-      summary: Busca templatestermos por filtros
+      summary: Busca status por filtros
       tags:
-        - Templatestermos
+        - Status de equipamento
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/templatestermos/{id}:
+  /api/statusequipamentos/{id}:
     get:
-      summary: Busca templatestermo por ID
+      summary: Busca status por ID
       tags:
-        - Templatestermos
+        - Status de equipamento
       parameters:
         - in: path
           name: id
@@ -56,11 +52,11 @@ paths:
             type: integer
       responses:
         200:
-          description: Registro encontrado
+          description: Status encontrado
     put:
-      summary: Atualiza um templatestermo por ID
+      summary: Atualiza um status por ID
       tags:
-        - Templatestermos
+        - Status de equipamento
       parameters:
         - in: path
           name: id
@@ -76,19 +72,15 @@ paths:
               properties:
                 nome:
                   type: string
-                titulo:
-                  type: string
-                subtitulo:
-                  type: string
-                conteudo:
+                descricao:
                   type: string
       responses:
         200:
-          description: Registro atualizado com sucesso
+          description: Status atualizado com sucesso
     delete:
-      summary: Remove um templatestermo por ID
+      summary: Remove um status por ID
       tags:
-        - Templatestermos
+        - Status de equipamento
       parameters:
         - in: path
           name: id
@@ -97,4 +89,4 @@ paths:
             type: integer
       responses:
         200:
-          description: Registro removido com sucesso
+          description: Status removido com sucesso

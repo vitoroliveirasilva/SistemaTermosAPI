@@ -1,47 +1,44 @@
 tags:
-  - name: Statustermos
-    description: Gerenciamento de statustermos
+  - name: Filial
+    description: Gerenciamento de filiais
 
 paths:
-  /api/statustermos:
+  /api/filial:
     get:
-      summary: Lista todos os registros de statustermos
+      summary: Lista todos os registros de filiais
       tags:
-        - Statustermos
+        - Filial
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo statustermo
+      summary: Cria uma nova filial
       tags:
-        - Statustermos
+        - Filial
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                nome:
-                  type: string
+              $ref: '#/components/schemas/Filial'
       responses:
         201:
           description: Registro criado com sucesso
 
-  /api/statustermos/filtros:
+  /api/filial/filtros:
     get:
-      summary: Busca statustermos por filtros
+      summary: Busca filiais por filtros
       tags:
-        - Statustermos
+        - Filial
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/statustermos/{id}:
+  /api/filial/{id}:
     get:
-      summary: Busca statustermo por ID
+      summary: Busca filial por ID
       tags:
-        - Statustermos
+        - Filial
       parameters:
         - in: path
           name: id
@@ -52,9 +49,9 @@ paths:
         200:
           description: Registro encontrado
     put:
-      summary: Atualiza um statustermo por ID
+      summary: Atualiza uma filial por ID
       tags:
-        - Statustermos
+        - Filial
       parameters:
         - in: path
           name: id
@@ -70,13 +67,15 @@ paths:
               properties:
                 nome:
                   type: string
+                endereco:
+                  type: string
       responses:
         200:
           description: Registro atualizado com sucesso
     delete:
-      summary: Remove um statustermo por ID
+      summary: Remove uma filial por ID
       tags:
-        - Statustermos
+        - Filial
       parameters:
         - in: path
           name: id

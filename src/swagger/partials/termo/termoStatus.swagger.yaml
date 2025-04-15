@@ -1,20 +1,20 @@
 tags:
-  - name: Categorias
-    description: Gerenciamento de categorias
+  - name: Status de termos
+    description: Gerenciamento de status de termos
 
 paths:
-  /api/categorias:
+  /api/statustermos:
     get:
-      summary: Lista todos os registros de categorias
+      summary: Lista todos os status de termos
       tags:
-        - Categorias
+        - Status de termos
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo categoria
+      summary: Cria um novo status de termo
       tags:
-        - Categorias
+        - Status de termos
       requestBody:
         required: true
         content:
@@ -24,26 +24,24 @@ paths:
               properties:
                 nome:
                   type: string
-                descricao:
-                  type: string
       responses:
         201:
           description: Registro criado com sucesso
 
-  /api/categorias/filtros:
+  /api/statustermos/filtros:
     get:
-      summary: Busca categorias por filtros
+      summary: Busca status por filtros
       tags:
-        - Categorias
+        - Status de termos
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/categorias/{id}:
+  /api/statustermos/{id}:
     get:
-      summary: Busca categoria por ID
+      summary: Busca status por ID
       tags:
-        - Categorias
+        - Status de termos
       parameters:
         - in: path
           name: id
@@ -54,9 +52,9 @@ paths:
         200:
           description: Registro encontrado
     put:
-      summary: Atualiza um categoria por ID
+      summary: Atualiza um status de termo por ID
       tags:
-        - Categorias
+        - Status de termos
       parameters:
         - in: path
           name: id
@@ -72,15 +70,13 @@ paths:
               properties:
                 nome:
                   type: string
-                descricao:
-                  type: string
       responses:
         200:
           description: Registro atualizado com sucesso
     delete:
-      summary: Remove um categoria por ID
+      summary: Remove um status por ID
       tags:
-        - Categorias
+        - Status de termos
       parameters:
         - in: path
           name: id

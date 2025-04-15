@@ -1,20 +1,20 @@
 tags:
-  - name: Statusequipamentos
-    description: Gerenciamento de statusequipamentos
+  - name: Tipos de termos
+    description: Gerenciamento de tipos de termos
 
 paths:
-  /api/statusequipamentos:
+  /api/tipostermos:
     get:
-      summary: Lista todos os registros de statusequipamentos
+      summary: Lista todos os tipos de termos
       tags:
-        - Statusequipamentos
+        - Tipos de termos
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo statusequipamento
+      summary: Cria um novo tipo de termo
       tags:
-        - Statusequipamentos
+        - Tipos de termos
       requestBody:
         required: true
         content:
@@ -30,20 +30,20 @@ paths:
         201:
           description: Registro criado com sucesso
 
-  /api/statusequipamentos/filtros:
+  /api/tipostermos/filtros:
     get:
-      summary: Busca statusequipamentos por filtros
+      summary: Busca tipos de termos por filtros
       tags:
-        - Statusequipamentos
+        - Tipos de termos
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/statusequipamentos/{id}:
+  /api/tipostermos/{id}:
     get:
-      summary: Busca statusequipamento por ID
+      summary: Busca tipo de termo por ID
       tags:
-        - Statusequipamentos
+        - Tipos de termos
       parameters:
         - in: path
           name: id
@@ -54,9 +54,9 @@ paths:
         200:
           description: Registro encontrado
     put:
-      summary: Atualiza um statusequipamento por ID
+      summary: Atualiza um tipo de termo por ID
       tags:
-        - Statusequipamentos
+        - Tipos de termos
       parameters:
         - in: path
           name: id
@@ -78,9 +78,9 @@ paths:
         200:
           description: Registro atualizado com sucesso
     delete:
-      summary: Remove um statusequipamento por ID
+      summary: Remove um tipo de termo por ID
       tags:
-        - Statusequipamentos
+        - Tipos de termos
       parameters:
         - in: path
           name: id

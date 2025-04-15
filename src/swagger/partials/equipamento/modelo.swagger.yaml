@@ -1,20 +1,20 @@
 tags:
-  - name: Usuarios
-    description: Gerenciamento de usuarios
+  - name: Modelos
+    description: Gerenciamento de modelos de equipamentos
 
 paths:
-  /api/usuarios:
+  /api/modelos:
     get:
-      summary: Lista todos os registros de usuarios
+      summary: Lista todos os modelos
       tags:
-        - Usuarios
+        - Modelos
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo usuario
+      summary: Cadastra um novo modelo
       tags:
-        - Usuarios
+        - Modelos
       requestBody:
         required: true
         content:
@@ -22,32 +22,30 @@ paths:
             schema:
               type: object
               properties:
-                nome:
+                marca:
                   type: string
-                email:
+                modelo:
                   type: string
-                senha:
-                  type: string
-                status:
+                descricao:
                   type: string
       responses:
         201:
-          description: Registro criado com sucesso
+          description: Modelo cadastrado com sucesso
 
-  /api/usuarios/filtros:
+  /api/modelos/filtros:
     get:
-      summary: Busca usuarios por filtros
+      summary: Busca modelos por filtros
       tags:
-        - Usuarios
+        - Modelos
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/usuarios/{id}:
+  /api/modelos/{id}:
     get:
-      summary: Busca usuario por ID
+      summary: Busca modelo por ID
       tags:
-        - Usuarios
+        - Modelos
       parameters:
         - in: path
           name: id
@@ -56,11 +54,11 @@ paths:
             type: integer
       responses:
         200:
-          description: Registro encontrado
+          description: Modelo encontrado
     put:
-      summary: Atualiza um usuario por ID
+      summary: Atualiza um modelo por ID
       tags:
-        - Usuarios
+        - Modelos
       parameters:
         - in: path
           name: id
@@ -74,21 +72,19 @@ paths:
             schema:
               type: object
               properties:
-                nome:
+                marca:
                   type: string
-                email:
+                modelo:
                   type: string
-                senha:
-                  type: string
-                status:
+                descricao:
                   type: string
       responses:
         200:
-          description: Registro atualizado com sucesso
+          description: Modelo atualizado com sucesso
     delete:
-      summary: Remove um usuario por ID
+      summary: Remove um modelo por ID
       tags:
-        - Usuarios
+        - Modelos
       parameters:
         - in: path
           name: id
@@ -97,4 +93,4 @@ paths:
             type: integer
       responses:
         200:
-          description: Registro removido com sucesso
+          description: Modelo removido com sucesso

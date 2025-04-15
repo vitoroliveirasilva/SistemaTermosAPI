@@ -1,20 +1,20 @@
 tags:
-  - name: Historicomovimentacoes
-    description: Gerenciamento de historicomovimentacoes
+  - name: Templates de termos
+    description: Gerenciamento de templates de termos
 
 paths:
-  /api/historicomovimentacoes:
+  /api/templatestermos:
     get:
-      summary: Lista todos os registros de historicomovimentacoes
+      summary: Lista todos os registros de templates de termos
       tags:
-        - Historicomovimentacoes
+        - Templates de termos
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo historicomovimentacoe
+      summary: Cria um novo template de termo
       tags:
-        - Historicomovimentacoes
+        - Templates de termos
       requestBody:
         required: true
         content:
@@ -22,34 +22,32 @@ paths:
             schema:
               type: object
               properties:
-                equipamento_id:
-                  type: integer
-                usuario_id:
-                  type: integer
-                acao_id:
-                  type: integer
-                data_movimentacao:
+                nome:
                   type: string
-                observacao:
+                titulo:
+                  type: string
+                subtitulo:
+                  type: string
+                conteudo:
                   type: string
       responses:
         201:
           description: Registro criado com sucesso
 
-  /api/historicomovimentacoes/filtros:
+  /api/templatestermos/filtros:
     get:
-      summary: Busca historicomovimentacoes por filtros
+      summary: Busca templates de termos por filtros
       tags:
-        - Historicomovimentacoes
+        - Templates de termos
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/historicomovimentacoes/{id}:
+  /api/templatestermos/{id}:
     get:
-      summary: Busca historicomovimentacoe por ID
+      summary: Busca template de termo por ID
       tags:
-        - Historicomovimentacoes
+        - Templates de termos
       parameters:
         - in: path
           name: id
@@ -60,9 +58,9 @@ paths:
         200:
           description: Registro encontrado
     put:
-      summary: Atualiza um historicomovimentacoe por ID
+      summary: Atualiza um template de termo por ID
       tags:
-        - Historicomovimentacoes
+        - Templates de termos
       parameters:
         - in: path
           name: id
@@ -76,23 +74,21 @@ paths:
             schema:
               type: object
               properties:
-                equipamento_id:
-                  type: integer
-                usuario_id:
-                  type: integer
-                acao_id:
-                  type: integer
-                data_movimentacao:
+                nome:
                   type: string
-                observacao:
+                titulo:
+                  type: string
+                subtitulo:
+                  type: string
+                conteudo:
                   type: string
       responses:
         200:
           description: Registro atualizado com sucesso
     delete:
-      summary: Remove um historicomovimentacoe por ID
+      summary: Remove um template de termo por ID
       tags:
-        - Historicomovimentacoes
+        - Templates de termos
       parameters:
         - in: path
           name: id

@@ -1,20 +1,20 @@
 tags:
-  - name: Equipamentos
-    description: Gerenciamento de equipamentos
+  - name: Categorias
+    description: Gerenciamento de categorias de equipamentos
 
 paths:
-  /api/equipamentos:
+  /api/categoria:
     get:
-      summary: Lista todos os registros de equipamentos
+      summary: Lista todas as categorias
       tags:
-        - Equipamentos
+        - Categorias
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo equipamento
+      summary: Cria uma nova categoria
       tags:
-        - Equipamentos
+        - Categorias
       requestBody:
         required: true
         content:
@@ -22,26 +22,28 @@ paths:
             schema:
               type: object
               properties:
-                numero_serie:
+                nome:
+                  type: string
+                descricao:
                   type: string
       responses:
         201:
-          description: Registro criado com sucesso
+          description: Categoria criada com sucesso
 
-  /api/equipamentos/filtros:
+  /api/categoria/filtros:
     get:
-      summary: Busca equipamentos por filtros
+      summary: Busca categorias por filtros
       tags:
-        - Equipamentos
+        - Categorias
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/equipamentos/{id}:
+  /api/categoria/{id}:
     get:
-      summary: Busca equipamento por ID
+      summary: Busca categoria por ID
       tags:
-        - Equipamentos
+        - Categorias
       parameters:
         - in: path
           name: id
@@ -50,11 +52,11 @@ paths:
             type: integer
       responses:
         200:
-          description: Registro encontrado
+          description: Categoria encontrada
     put:
-      summary: Atualiza um equipamento por ID
+      summary: Atualiza uma categoria por ID
       tags:
-        - Equipamentos
+        - Categorias
       parameters:
         - in: path
           name: id
@@ -68,15 +70,17 @@ paths:
             schema:
               type: object
               properties:
-                numero_serie:
+                nome:
+                  type: string
+                descricao:
                   type: string
       responses:
         200:
-          description: Registro atualizado com sucesso
+          description: Categoria atualizada com sucesso
     delete:
-      summary: Remove um equipamento por ID
+      summary: Remove uma categoria por ID
       tags:
-        - Equipamentos
+        - Categorias
       parameters:
         - in: path
           name: id
@@ -85,4 +89,4 @@ paths:
             type: integer
       responses:
         200:
-          description: Registro removido com sucesso
+          description: Categoria removida com sucesso

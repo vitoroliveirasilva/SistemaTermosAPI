@@ -1,20 +1,20 @@
 tags:
-  - name: Termosgerados
-    description: Gerenciamento de termosgerados
+  - name: Termos
+    description: Gerenciamento de termos de responsabilidade
 
 paths:
-  /api/termosgerados:
+  /api/termos:
     get:
-      summary: Lista todos os registros de termosgerados
+      summary: Lista todos os termos
       tags:
-        - Termosgerados
+        - Termos
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo termosgerado
+      summary: Cria um novo termo
       tags:
-        - Termosgerados
+        - Termos
       requestBody:
         required: true
         content:
@@ -22,32 +22,40 @@ paths:
             schema:
               type: object
               properties:
-                termo_id:
+                usuario_id:
                   type: integer
-                template_id:
+                equipamento_id:
                   type: integer
-                caminho_pdf:
+                criador_id:
+                  type: integer
+                tipo_id:
+                  type: integer
+                status_id:
+                  type: integer
+                data_criacao:
                   type: string
-                data_geracao:
+                data_assinatura:
+                  type: string
+                observacao:
                   type: string
       responses:
         201:
           description: Registro criado com sucesso
 
-  /api/termosgerados/filtros:
+  /api/termos/filtros:
     get:
-      summary: Busca termosgerados por filtros
+      summary: Busca termos por filtros
       tags:
-        - Termosgerados
+        - Termos
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/termosgerados/{id}:
+  /api/termos/{id}:
     get:
-      summary: Busca termosgerado por ID
+      summary: Busca termo por ID
       tags:
-        - Termosgerados
+        - Termos
       parameters:
         - in: path
           name: id
@@ -58,9 +66,9 @@ paths:
         200:
           description: Registro encontrado
     put:
-      summary: Atualiza um termosgerado por ID
+      summary: Atualiza um termo por ID
       tags:
-        - Termosgerados
+        - Termos
       parameters:
         - in: path
           name: id
@@ -74,21 +82,29 @@ paths:
             schema:
               type: object
               properties:
-                termo_id:
+                usuario_id:
                   type: integer
-                template_id:
+                equipamento_id:
                   type: integer
-                caminho_pdf:
+                criador_id:
+                  type: integer
+                tipo_id:
+                  type: integer
+                status_id:
+                  type: integer
+                data_criacao:
                   type: string
-                data_geracao:
+                data_assinatura:
+                  type: string
+                observacao:
                   type: string
       responses:
         200:
           description: Registro atualizado com sucesso
     delete:
-      summary: Remove um termosgerado por ID
+      summary: Remove um termo por ID
       tags:
-        - Termosgerados
+        - Termos
       parameters:
         - in: path
           name: id

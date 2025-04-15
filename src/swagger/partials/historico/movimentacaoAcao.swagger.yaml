@@ -1,20 +1,20 @@
 tags:
-  - name: Tipostermos
-    description: Gerenciamento de tipostermos
+  - name: Movimentação de estoque - Ações
+    description: Gerenciamento de ações de movimentações de estoque
 
 paths:
-  /api/tipostermos:
+  /api/acoesmovimentacoes:
     get:
-      summary: Lista todos os registros de tipostermos
+      summary: Lista todas as ações de movimentações de estoque
       tags:
-        - Tipostermos
+        - Movimentação de estoque - Ações
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo tipostermo
+      summary: Cria uma nova ação de movimentação de estoque
       tags:
-        - Tipostermos
+        - Movimentação de estoque - Ações
       requestBody:
         required: true
         content:
@@ -30,20 +30,20 @@ paths:
         201:
           description: Registro criado com sucesso
 
-  /api/tipostermos/filtros:
+  /api/acoesmovimentacoes/filtros:
     get:
-      summary: Busca tipostermos por filtros
+      summary: Busca ações de movimentações por filtros
       tags:
-        - Tipostermos
+        - Movimentação de estoque - Ações
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/tipostermos/{id}:
+  /api/acoesmovimentacoes/{id}:
     get:
-      summary: Busca tipostermo por ID
+      summary: Busca ação por ID
       tags:
-        - Tipostermos
+        - Movimentação de estoque - Ações
       parameters:
         - in: path
           name: id
@@ -54,9 +54,9 @@ paths:
         200:
           description: Registro encontrado
     put:
-      summary: Atualiza um tipostermo por ID
+      summary: Atualiza uma ação de movimentação por ID
       tags:
-        - Tipostermos
+        - Movimentação de estoque - Ações
       parameters:
         - in: path
           name: id
@@ -78,9 +78,9 @@ paths:
         200:
           description: Registro atualizado com sucesso
     delete:
-      summary: Remove um tipostermo por ID
+      summary: Remove uma ação por ID
       tags:
-        - Tipostermos
+        - Movimentação de estoque - Ações
       parameters:
         - in: path
           name: id

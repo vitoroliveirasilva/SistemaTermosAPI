@@ -1,20 +1,20 @@
 tags:
-  - name: Acoesmovimentacoes
-    description: Gerenciamento de acoesmovimentacoes
+  - name: Termos gerados
+    description: Gerenciamento de termos gerados
 
 paths:
-  /api/acoesmovimentacoes:
+  /api/termosgerados:
     get:
-      summary: Lista todos os registros de acoesmovimentacoes
+      summary: Lista todos os termos gerados
       tags:
-        - Acoesmovimentacoes
+        - Termos gerados
       responses:
         200:
           description: Lista retornada com sucesso
     post:
-      summary: Cria um novo acoesmovimentacoe
+      summary: Gera um novo termo com base em um template
       tags:
-        - Acoesmovimentacoes
+        - Termos gerados
       requestBody:
         required: true
         content:
@@ -22,28 +22,32 @@ paths:
             schema:
               type: object
               properties:
-                nome:
+                termo_id:
+                  type: integer
+                template_id:
+                  type: integer
+                caminho_pdf:
                   type: string
-                descricao:
+                data_geracao:
                   type: string
       responses:
         201:
           description: Registro criado com sucesso
 
-  /api/acoesmovimentacoes/filtros:
+  /api/termosgerados/filtros:
     get:
-      summary: Busca acoesmovimentacoes por filtros
+      summary: Busca termos gerados por filtros
       tags:
-        - Acoesmovimentacoes
+        - Termos gerados
       responses:
         200:
           description: Registros filtrados com sucesso
 
-  /api/acoesmovimentacoes/{id}:
+  /api/termosgerados/{id}:
     get:
-      summary: Busca acoesmovimentacoe por ID
+      summary: Busca termo gerado por ID
       tags:
-        - Acoesmovimentacoes
+        - Termos gerados
       parameters:
         - in: path
           name: id
@@ -54,9 +58,9 @@ paths:
         200:
           description: Registro encontrado
     put:
-      summary: Atualiza um acoesmovimentacoe por ID
+      summary: Atualiza um termo gerado por ID
       tags:
-        - Acoesmovimentacoes
+        - Termos gerados
       parameters:
         - in: path
           name: id
@@ -70,17 +74,21 @@ paths:
             schema:
               type: object
               properties:
-                nome:
+                termo_id:
+                  type: integer
+                template_id:
+                  type: integer
+                caminho_pdf:
                   type: string
-                descricao:
+                data_geracao:
                   type: string
       responses:
         200:
           description: Registro atualizado com sucesso
     delete:
-      summary: Remove um acoesmovimentacoe por ID
+      summary: Remove um termo gerado por ID
       tags:
-        - Acoesmovimentacoes
+        - Termos gerados
       parameters:
         - in: path
           name: id
