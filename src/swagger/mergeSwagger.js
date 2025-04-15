@@ -20,41 +20,75 @@ const spec = {
   ],
   tags: [],
   paths: {},
-  components: {}
+  components: {
+    schemas: {}
+  }
 };
 
-// Combina arquivos separados
-fs.readdirSync(docsDir).forEach(file => {
-  if (file.endsWith('.swagger.yaml')) {
-    const data = yaml.load(fs.readFileSync(path.join(docsDir, file), 'utf8'));
+/**
+ * Lê todos os arquivos .swagger.yaml recursivamente e junta no objeto spec
+ */
+function processYamlFilesRecursively(dir) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
 
-    if (data.tags) {
-      data.tags.forEach(tag => {
-        if (!spec.tags.find(t => t.name === tag.name)) {
-          spec.tags.push(tag);
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      processYamlFilesRecursively(fullPath);
+    }
+
+    if (entry.isFile() && entry.name.endsWith('.swagger.yaml')) {
+      try {
+        const fileData = yaml.load(fs.readFileSync(fullPath, 'utf8'));
+
+        // Adiciona tags
+        if (fileData.tags) {
+          fileData.tags.forEach(tag => {
+            if (!spec.tags.some(t => t.name === tag.name)) {
+              spec.tags.push(tag);
+            }
+          });
         }
-      });
-    }
 
-    if (data.paths) {
-      Object.entries(data.paths).forEach(([route, ops]) => {
-        spec.paths[route] = { ...(spec.paths[route] || {}), ...ops };
-      });
-    }
+        // Adiciona paths
+        if (fileData.paths) {
+          for (const [route, operations] of Object.entries(fileData.paths)) {
+            spec.paths[route] = {
+              ...(spec.paths[route] || {}),
+              ...operations
+            };
+          }
+        }
 
-    if (data.components) {
-      spec.components.schemas = {
-        ...(spec.components.schemas || {}),
-        ...(data.components.schemas || {})
-      };
+        // Adiciona components.schemas
+        if (fileData.components?.schemas) {
+          spec.components.schemas = {
+            ...spec.components.schemas,
+            ...fileData.components.schemas
+          };
+        }
+
+      } catch (err) {
+        console.error(`❌ Erro ao processar ${fullPath}:`, err.message);
+      }
     }
   }
-});
+}
 
-// Ordenar os paths
-spec.paths = Object.fromEntries(
-  Object.entries(spec.paths).sort(([a], [b]) => a.localeCompare(b))
-);
+// Inicia leitura dos arquivos
+processYamlFilesRecursively(docsDir);
 
+// Ordena tags, paths e schemas
+spec.tags.sort((a, b) => a.name.localeCompare(b.name));
+spec.paths = Object.fromEntries(Object.entries(spec.paths).sort(([a], [b]) => a.localeCompare(b)));
+
+if (spec.components.schemas) {
+  spec.components.schemas = Object.fromEntries(
+    Object.entries(spec.components.schemas).sort(([a], [b]) => a.localeCompare(b))
+  );
+}
+
+// Escreve o arquivo unificado
 fs.writeFileSync(outputPath, yaml.dump(spec, { noRefs: true, sortKeys: false }));
 console.log('Swagger unificado gerado com sucesso!');
