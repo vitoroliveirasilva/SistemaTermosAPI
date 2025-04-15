@@ -1,12 +1,12 @@
-const usuarioRepository = require('../repositories/usuarioRepository');
-const filialRepository = require('../repositories/filialRepository');
+const usuarioRepository = require('../../repositories/organizacional/usuarioRepository');
+const filialRepository = require('../../repositories/organizacional/filialRepository');
 const {
     validarDados
-} = require('../utils');
+} = require('../../utils');
 const {
     usuarioSchema,
     usuarioUpdateSchema
-} = require('../validations');
+} = require('../../validations');
 const bcrypt = require('bcrypt');
 
 
