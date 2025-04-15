@@ -1,4 +1,4 @@
-const statusTermoService = require('../services/statusTermoService');
+const statusTermoService = require('../../services/termo/termoStatusService');
 
 class StatusTermoController {
     async criar(req, res, next) {

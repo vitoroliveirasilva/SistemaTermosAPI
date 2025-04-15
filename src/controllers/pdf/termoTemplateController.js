@@ -1,4 +1,4 @@
-const templateTermoService = require('../services/templateTermoService');
+const templateTermoService = require('../../services/pdf/termoTemplateService');
 
 class TemplateTermoController {
     async criar(req, res, next) {

@@ -1,10 +1,10 @@
-const termoService = require('../services/termoService');
+const filialService = require('../../services/organizacional/filialService');
 
-class TermoController {
+class FilialController {
     async criar(req, res, next) {
         try {
-            const termo = await termoService.criar(req.body);
-            return res.status(201).json(termo);
+            const filial = await filialService.criar(req.body);
+            return res.status(201).json(filial);
         } catch (error) {
             next(error);
         }
@@ -12,8 +12,8 @@ class TermoController {
 
     async listar(req, res, next) {
         try {
-            const termos = await termoService.listar();
-            return res.json(termos);
+            const filiais = await filialService.listar();
+            return res.json(filiais);
         } catch (error) {
             next(error);
         }
@@ -21,8 +21,8 @@ class TermoController {
 
     async buscarPorFiltros(req, res, next) {
         try {
-            const termos = await termoService.listar(req.query);
-            return res.json(termos);
+            const filiais = await filialService.listar(req.query);
+            return res.json(filiais);
         } catch (error) {
             next(error);
         }
@@ -30,8 +30,8 @@ class TermoController {
 
     async buscarPorId(req, res, next) {
         try {
-            const termo = await termoService.buscarPorId(req.params.id);
-            return res.json(termo);
+            const filial = await filialService.buscarPorId(req.params.id);
+            return res.json(filial);
         } catch (error) {
             next(error);
         }
@@ -39,8 +39,8 @@ class TermoController {
 
     async atualizar(req, res, next) {
         try {
-            const termo = await termoService.atualizar(req.params.id, req.body);
-            return res.json(termo);
+            const filial = await filialService.atualizar(req.params.id, req.body);
+            return res.json(filial);
         } catch (error) {
             next(error);
         }
@@ -48,7 +48,7 @@ class TermoController {
 
     async remover(req, res, next) {
         try {
-            const resultado = await termoService.remover(req.params.id);
+            const resultado = await filialService.remover(req.params.id);
             return res.status(204).json(resultado);
         } catch (error) {
             next(error);
@@ -56,4 +56,4 @@ class TermoController {
     }
 }
 
-module.exports = new TermoController();
+module.exports = new FilialController();

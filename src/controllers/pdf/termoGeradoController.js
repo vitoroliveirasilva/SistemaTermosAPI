@@ -1,4 +1,4 @@
-const termoGeradoService = require('../services/termoGeradoService');
+const termoGeradoService = require('../../services/pdf/termoGeradoService');
 
 class TermoGeradoController {
     async criar(req, res, next) {

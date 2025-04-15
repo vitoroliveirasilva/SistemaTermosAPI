@@ -1,10 +1,10 @@
-const filialService = require('../services/filialService');
+const modeloService = require('../../services/equipamento/modeloService');
 
-class FilialController {
+class ModeloController {
     async criar(req, res, next) {
         try {
-            const filial = await filialService.criar(req.body);
-            return res.status(201).json(filial);
+            const modelo = await modeloService.criar(req.body);
+            return res.status(201).json(modelo);
         } catch (error) {
             next(error);
         }
@@ -12,8 +12,8 @@ class FilialController {
 
     async listar(req, res, next) {
         try {
-            const filiais = await filialService.listar();
-            return res.json(filiais);
+            const modelos = await modeloService.listar();
+            return res.json(modelos);
         } catch (error) {
             next(error);
         }
@@ -21,8 +21,8 @@ class FilialController {
 
     async buscarPorFiltros(req, res, next) {
         try {
-            const filiais = await filialService.listar(req.query);
-            return res.json(filiais);
+            const modelos = await modeloService.listar(req.query);
+            return res.json(modelos);
         } catch (error) {
             next(error);
         }
@@ -30,8 +30,8 @@ class FilialController {
 
     async buscarPorId(req, res, next) {
         try {
-            const filial = await filialService.buscarPorId(req.params.id);
-            return res.json(filial);
+            const modelo = await modeloService.buscarPorId(req.params.id);
+            return res.json(modelo);
         } catch (error) {
             next(error);
         }
@@ -39,8 +39,8 @@ class FilialController {
 
     async atualizar(req, res, next) {
         try {
-            const filial = await filialService.atualizar(req.params.id, req.body);
-            return res.json(filial);
+            const modelo = await modeloService.atualizar(req.params.id, req.body);
+            return res.json(modelo);
         } catch (error) {
             next(error);
         }
@@ -48,7 +48,7 @@ class FilialController {
 
     async remover(req, res, next) {
         try {
-            const resultado = await filialService.remover(req.params.id);
+            const resultado = await modeloService.remover(req.params.id);
             return res.status(204).json(resultado);
         } catch (error) {
             next(error);
@@ -56,4 +56,4 @@ class FilialController {
     }
 }
 
-module.exports = new FilialController();
+module.exports = new ModeloController();

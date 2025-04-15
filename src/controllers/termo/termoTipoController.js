@@ -1,4 +1,4 @@
-const tipoTermoService = require('../services/tipoTermoService');
+const tipoTermoService = require('../../services/termo/termoTipoService');
 
 class TipoTermoController {
     async criar(req, res, next) {

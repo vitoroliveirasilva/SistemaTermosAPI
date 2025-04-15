@@ -1,4 +1,4 @@
-const acaoMovimentacaoService = require('../services/acaoMovimentacaoService');
+const acaoMovimentacaoService = require('../../services/historico/movimentacaoAcaoService');
 
 class AcaoMovimentacaoController {
     async criar(req, res, next) {

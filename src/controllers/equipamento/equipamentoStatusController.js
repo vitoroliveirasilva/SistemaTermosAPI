@@ -1,4 +1,4 @@
-const statusEquipamentoService = require('../services/statusEquipamentoService');
+const statusEquipamentoService = require('../../services/equipamento/equipamentoStatusService');
 
 class StatusEquipamentoController {
     async criar(req, res, next) {

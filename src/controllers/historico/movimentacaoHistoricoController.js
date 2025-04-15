@@ -1,4 +1,4 @@
-const historicoMovimentacaoService = require('../services/historicoMovimentacaoService');
+const historicoMovimentacaoService = require('../../services/historico/movimentacaoHistoricoService');
 
 class HistoricoMovimentacaoController {
     async criar(req, res, next) {
