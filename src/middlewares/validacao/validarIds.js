@@ -1,6 +1,6 @@
 const {
     validarId
-} = require('../../utils/validarId');
+} = require('../../utils/validacaoId');
 
 function validarIds(req, res, next) {
     const parametrosInvalidos = Object.entries(req.params).find(([key, value]) => {
