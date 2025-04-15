@@ -1,7 +1,7 @@
 const {
     DataTypes
 } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
 
 const EquipamentoStatus = sequelize.define('EquipamentoStatus', {
     id: {
@@ -32,7 +32,7 @@ const EquipamentoStatus = sequelize.define('EquipamentoStatus', {
         unique: false
     }
 }, {
-    tableName: 'equipamento_status',
+    tableName: 'tb_equipamentoStatus',
     timestamps: true,
     underscored: true
 });

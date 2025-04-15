@@ -1,9 +1,9 @@
 const {
     DataTypes
 } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
 
-const TermStatus = sequelize.define('TermStatus', {
+const TermoStatus = sequelize.define('TermoStatus', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -27,11 +27,11 @@ const TermStatus = sequelize.define('TermStatus', {
         }
     }
 }, {
-    tableName: 'term_status',
+    tableName: 'tb_termoStatus',
     timestamps: true,
     underscored: true
 });
 
-TermStatus.displayName = 'Status';
+TermoStatus.displayName = 'Status';
 
-module.exports = TermStatus;
+module.exports = TermoStatus;

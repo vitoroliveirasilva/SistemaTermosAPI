@@ -2,7 +2,7 @@ const {
   DataTypes,
   Op
 } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
 
 const Usuario = sequelize.define('Usuario', {
   id: {
@@ -44,7 +44,7 @@ const Usuario = sequelize.define('Usuario', {
     defaultValue: DataTypes.NOW
   }
 }, {
-  tableName: 'usuarios',
+  tableName: 'tb_usuario',
   timestamps: false,
   defaultScope: {
     attributes: {

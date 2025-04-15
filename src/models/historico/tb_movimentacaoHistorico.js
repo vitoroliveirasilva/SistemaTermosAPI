@@ -1,22 +1,15 @@
 const {
     DataTypes
 } = require('sequelize');
-const sequelize = require('../config/database');
-const Usuario = require('./Usuario');
-const Equipamento = require('./Equipamento');
+const sequelize = require('../../config/database');
+const Equipamento = require('../equipamento/tb_equipamento');
+const Usuario = require('../organizacional/tb_usuario');
 
-const Termo = sequelize.define('Termo', {
+const MovimentacaoHistorico = sequelize.define('MovimentacaoHistorico', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
-    },
-    usuario_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Usuario,
-            key: 'id'
-        }
     },
     equipamento_id: {
         type: DataTypes.INTEGER,
@@ -25,28 +18,21 @@ const Termo = sequelize.define('Termo', {
             key: 'id'
         }
     },
-    criador_id: {
+    usuario_id: {
         type: DataTypes.INTEGER,
+        allowNull: true,
         references: {
             model: Usuario,
             key: 'id'
         }
     },
-    tipo_id: {
+    acao_id: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    status_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    data_criacao: {
+    data_movimentacao: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
-    },
-    data_assinatura: {
-        type: DataTypes.DATE,
-        allowNull: true
     },
     observacao: {
         type: DataTypes.TEXT,
@@ -54,11 +40,11 @@ const Termo = sequelize.define('Termo', {
         unique: false
     }
 }, {
-    tableName: 'termos',
+    tableName: 'tb_movimentacaoHistorico',
     timestamps: true,
     underscored: true
 });
 
-Termo.displayName = 'Termo';
+MovimentacaoHistorico.displayName = 'Histórico de movimentação';
 
-module.exports = Termo;
+module.exports = MovimentacaoHistorico;

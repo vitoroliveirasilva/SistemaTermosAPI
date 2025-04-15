@@ -1,9 +1,9 @@
 const {
     DataTypes
 } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
 
-const TemplateTermo = sequelize.define('TemplateTermo', {
+const TermoTemplate = sequelize.define('TermoTemplate', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -66,11 +66,11 @@ const TemplateTermo = sequelize.define('TemplateTermo', {
         }
     }
 }, {
-    tableName: 'templates_termos',
+    tableName: 'tb_termoTemplate',
     timestamps: true,
     underscored: true
 });
 
-TemplateTermo.displayName = 'Template de termo';
+TermoTemplate.displayName = 'Template de termo';
 
-module.exports = TemplateTermo;
+module.exports = TermoTemplate;

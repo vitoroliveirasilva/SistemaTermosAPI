@@ -1,9 +1,9 @@
 const {
     DataTypes
 } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
 
-const MovementAction = sequelize.define('MovementAction', {
+const Categoria = sequelize.define('Categoria', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -14,15 +14,15 @@ const MovementAction = sequelize.define('MovementAction', {
         allowNull: false,
         unique: {
             args: true,
-            msg: 'Ação já cadastrada!'
+            msg: 'Categoria já cadastrada!'
         },
         validate: {
             notEmpty: {
-                msg: "O nome da ação não pode ser vazio."
+                msg: "O nome da categoria não pode ser vazio."
             },
             len: {
                 args: [2, 50],
-                msg: "O nome da ação deve ter entre 2 a 50 caracteres."
+                msg: "O nome da categoria deve ter entre 2 a 50 caracteres."
             }
         }
     },
@@ -32,16 +32,16 @@ const MovementAction = sequelize.define('MovementAction', {
         validate: {
             len: {
                 args: [0, 100],
-                msg: "A descrição da ação deve ter no máximo 255 caracteres."
+                msg: "A descrição da categoria deve ter no máximo 255 caracteres."
             }
         }
     }
 }, {
-    tableName: 'movement_actions',
+    tableName: 'tb_categoria',
     timestamps: true,
     underscored: true
 });
 
-MovementAction.displayName = 'Ação de movimentação';
+Categoria.displayName = 'Categoria';
 
-module.exports = MovementAction;
+module.exports = Categoria;

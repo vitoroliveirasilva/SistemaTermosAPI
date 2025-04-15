@@ -1,9 +1,9 @@
 const {
     DataTypes
 } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
 
-const TermType = sequelize.define('TermType', {
+const MovimentacaoAcao = sequelize.define('MovimentacaoAcao', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -14,15 +14,15 @@ const TermType = sequelize.define('TermType', {
         allowNull: false,
         unique: {
             args: true,
-            msg: 'Tipo de termo já cadastrado!'
+            msg: 'Ação já cadastrada!'
         },
         validate: {
             notEmpty: {
-                msg: "O nome do tipo de termo não pode ser vazio."
+                msg: "O nome da ação não pode ser vazio."
             },
             len: {
                 args: [2, 50],
-                msg: "O nome do tipo de termo deve ter entre 2 a 50 caracteres."
+                msg: "O nome da ação deve ter entre 2 a 50 caracteres."
             }
         }
     },
@@ -32,16 +32,16 @@ const TermType = sequelize.define('TermType', {
         validate: {
             len: {
                 args: [0, 100],
-                msg: "A descrição do tipo de termo deve ter no máximo 255 caracteres."
+                msg: "A descrição da ação deve ter no máximo 255 caracteres."
             }
         }
     }
 }, {
-    tableName: 'term_types',
+    tableName: 'tb_movimentacaoAcao',
     timestamps: true,
     underscored: true
 });
 
-TermType.displayName = 'Tipo de termo';
+MovimentacaoAcao.displayName = 'Ação de movimentação';
 
-module.exports = TermType;
+module.exports = MovimentacaoAcao;

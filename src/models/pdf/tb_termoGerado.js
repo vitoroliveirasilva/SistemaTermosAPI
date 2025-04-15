@@ -1,9 +1,9 @@
 const {
     DataTypes
 } = require('sequelize');
-const sequelize = require('../config/database');
-const Termo = require('./Termo');
-const TemplateTermo = require('./TemplateTermo');
+const sequelize = require('../../config/database');
+const Termo = require('../termo/tb_termo');
+const TemplateTermo = require('./tb_termoTemplate');
 
 const TermoGerado = sequelize.define('TermoGerado', {
     id: {
@@ -34,7 +34,7 @@ const TermoGerado = sequelize.define('TermoGerado', {
         defaultValue: DataTypes.NOW
     }
 }, {
-    tableName: 'termos_gerados',
+    tableName: 'tb_termoGerado',
     timestamps: true,
     underscored: true
 });

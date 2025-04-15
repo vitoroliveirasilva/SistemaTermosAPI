@@ -1,9 +1,9 @@
 const {
     DataTypes
 } = require('sequelize');
-const sequelize = require('../config/database');
-const Modelo = require('./Modelo');
-const Filial = require('./Filial');
+const sequelize = require('../../config/database');
+const Modelo = require('./tb_modelo');
+const Filial = require('../organizacional/tb_filial');
 
 const Equipamento = sequelize.define('Equipamento', {
     id: {
@@ -47,7 +47,7 @@ const Equipamento = sequelize.define('Equipamento', {
         }
     },
 }, {
-    tableName: 'equipamentos',
+    tableName: 'tb_equipamento',
     timestamps: true,
     underscored: true
 });

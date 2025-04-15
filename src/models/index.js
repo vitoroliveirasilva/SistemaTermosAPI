@@ -1,20 +1,30 @@
 const sequelize = require('../config/database');
 
 
-// Importação dos modelos
-const Usuario = require('./Usuario');
-const Filial = require('./Filial');
-const Categoria = require('./Categoria');
-const Modelo = require('./Modelo');
-const Equipamento = require('./Equipamento');
-const Termo = require('./Termo');
-const HistoricoMovimentacao = require('./HistoricoMovimentacao');
-const EquipamentoStatus = require('./EquipamentoStatus');
-const TermType = require('./TermType');
-const TermStatus = require('./TermStatus');
-const MovementAction = require('./MovementAction');
-const TemplateTermo = require('./TemplateTermo');
-const TermoGerado = require('./TermoGerado');
+// === Importação dos models ===
+
+// Equipamentos
+const Categoria = require('./equipamento/tb_categoria');
+const Equipamento = require('./equipamento/tb_equipamento');
+const EquipamentoStatus = require('./equipamento/tb_equipamentoStatus');
+const Modelo  = require('./equipamento/tb_modelo');
+
+// Histórico
+const MovimentacaoHistorico = require('./historico/tb_movimentacaoHistorico');
+const MovimentacaoAcao = require('./historico/tb_movimentacaoAcao');
+
+// Organizacional
+const Filial = require('./organizacional/tb_filial');
+const Usuario = require('./organizacional/tb_usuario');
+
+// PDF
+const TermoGerado = require('./pdf/tb_termoGerado');
+const TermoTemplate = require('./pdf/tb_termoTemplate');
+
+// Termo
+const Termo = require('./termo/tb_termo');
+const TermoTipo = require('./termo/tb_termoTipo');
+const TermoStatus = require('./termo/tb_termoStatus');
 
 
 // Definição de relacionamentos
@@ -78,48 +88,48 @@ Equipamento.hasMany(Termo, {
 });
 
 // Termos e Tipo de Termo
-Termo.belongsTo(TermType, {
+Termo.belongsTo(TermoTipo, {
   foreignKey: 'tipo_id'
 });
-TermType.hasMany(Termo, {
+TermoTipo.hasMany(Termo, {
   foreignKey: 'tipo_id'
 });
 
 // Termos e Status
-Termo.belongsTo(TermStatus, {
+Termo.belongsTo(TermoStatus, {
   foreignKey: 'status_id'
 });
-TermStatus.hasMany(Termo, {
+TermoStatus.hasMany(Termo, {
   foreignKey: 'status_id'
 });
 
 // Histórico de Movimentação
-HistoricoMovimentacao.belongsTo(Equipamento, {
+MovimentacaoHistorico.belongsTo(Equipamento, {
   foreignKey: 'equipamento_id'
 });
-Equipamento.hasMany(HistoricoMovimentacao, {
+Equipamento.hasMany(MovimentacaoHistorico, {
   foreignKey: 'equipamento_id'
 });
 
-HistoricoMovimentacao.belongsTo(Usuario, {
+MovimentacaoHistorico.belongsTo(Usuario, {
   foreignKey: 'usuario_id'
 });
-Usuario.hasMany(HistoricoMovimentacao, {
+Usuario.hasMany(MovimentacaoHistorico, {
   foreignKey: 'usuario_id'
 });
 
-HistoricoMovimentacao.belongsTo(MovementAction, {
+MovimentacaoHistorico.belongsTo(MovimentacaoAcao, {
   foreignKey: 'acao_id'
 });
-MovementAction.hasMany(HistoricoMovimentacao, {
+MovimentacaoAcao.hasMany(MovimentacaoHistorico, {
   foreignKey: 'acao_id'
 });
 
 // Templates de Termos e Termos Gerados
-TermoGerado.belongsTo(TermType, {
+TermoGerado.belongsTo(TermoTipo, {
   foreignKey: 'template_id'
 });
-TemplateTermo.hasMany(TermoGerado, {
+TermoTemplate.hasMany(TermoGerado, {
   foreignKey: 'template_id'
 });
 
@@ -139,12 +149,12 @@ const models = {
   Modelo,
   Equipamento,
   Termo,
-  HistoricoMovimentacao,
+  MovimentacaoHistorico,
   EquipamentoStatus,
-  TermType,
-  TermStatus,
-  MovementAction,
-  TemplateTermo,
+  TermoTipo,
+  TermoStatus,
+  MovimentacaoAcao,
+  TermoTemplate,
   TermoGerado,
 };
 

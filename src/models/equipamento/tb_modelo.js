@@ -1,8 +1,8 @@
 const {
     DataTypes
 } = require('sequelize');
-const sequelize = require('../config/database');
-const Categoria = require('./Categoria');
+const sequelize = require('../../config/database');
+const Categoria = require('./tb_categoria');
 
 const Modelo = sequelize.define('Modelo', {
     id: {
@@ -60,7 +60,7 @@ const Modelo = sequelize.define('Modelo', {
         }
     }
 }, {
-    tableName: 'modelos',
+    tableName: 'tb_modelo',
     timestamps: true,
     underscored: true
 });

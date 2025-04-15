@@ -1,9 +1,9 @@
 const {
     DataTypes
 } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
 
-const Categoria = sequelize.define('Categoria', {
+const TermoTipo = sequelize.define('TermoTipo', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -14,15 +14,15 @@ const Categoria = sequelize.define('Categoria', {
         allowNull: false,
         unique: {
             args: true,
-            msg: 'Categoria já cadastrada!'
+            msg: 'Tipo de termo já cadastrado!'
         },
         validate: {
             notEmpty: {
-                msg: "O nome da categoria não pode ser vazio."
+                msg: "O nome do tipo de termo não pode ser vazio."
             },
             len: {
                 args: [2, 50],
-                msg: "O nome da categoria deve ter entre 2 a 50 caracteres."
+                msg: "O nome do tipo de termo deve ter entre 2 a 50 caracteres."
             }
         }
     },
@@ -32,16 +32,16 @@ const Categoria = sequelize.define('Categoria', {
         validate: {
             len: {
                 args: [0, 100],
-                msg: "A descrição da categoria deve ter no máximo 255 caracteres."
+                msg: "A descrição do tipo de termo deve ter no máximo 255 caracteres."
             }
         }
     }
 }, {
-    tableName: 'categorias',
+    tableName: 'tb_termoTipo',
     timestamps: true,
     underscored: true
 });
 
-Categoria.displayName = 'Categoria';
+TermoTipo.displayName = 'Tipo de termo';
 
-module.exports = Categoria;
+module.exports = TermoTipo;
