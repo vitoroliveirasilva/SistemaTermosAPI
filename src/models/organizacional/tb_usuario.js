@@ -39,6 +39,11 @@ const Usuario = sequelize.define('Usuario', {
     allowNull: false,
     defaultValue: 'ativo'
   },
+  permissao: {
+    type: DataTypes.ENUM('user', 'admin', 'dev'),
+    allowNull: false,
+    defaultValue: 'user'
+  },
   criadoEm: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW
