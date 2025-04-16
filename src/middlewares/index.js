@@ -3,6 +3,11 @@ const errorHandler = require('./errorHandler');
 const sanitizeRequest = require('./sanitizeMiddleware');
 
 
+// === Middlewares de autenticação ===
+const autenticacao = require('./auth/autenticacao');
+const verificarPermissao = require('./auth/permissionamento');
+
+
 // === QueryParams ===
 
 // Equipamento
@@ -33,6 +38,8 @@ module.exports = {
   validarIds,
   errorHandler,
   sanitizeRequest,
+  autenticacao,
+  verificarPermissao,
   validarQueryParamsCategoria,
   validarQueryParamsEquipamento,
   validarQueryParamsEquipamentoStatus,
