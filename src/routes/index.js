@@ -18,7 +18,7 @@ const movimentacaoHistoricoRoutes = require('./historico/movimentacaoHistoricoRo
 const filialRoutes = require('./organizacional/filialRoutes');
 const usuarioRoutes = require('./organizacional/usuarioRoutes');
 
-// Pdf
+// PDF
 const termoGeradoRoutes = require('./pdf/termoGeradoRoutes');
 const termoTemplateRoutes = require('./pdf/termoTemplateRoutes');
 
@@ -28,20 +28,26 @@ const termoStatusRoutes = require('./termo/termoStatusRoutes');
 const termoTipoRoutes = require('./termo/termoTipoRoutes');
 
 
-// Definição das rotas
-router.use('/categoria', categoriaRoutes);
-router.use('/equipamento', equipamentoRoutes);
-router.use('/equipamentostatus', equipamentoStatusRoutes);
-router.use('/modelo', modeloRoutes);
-router.use('/movimentacaoacao', movimentacaoAcaoRoutes);
-router.use('/movimentacaohistorico', movimentacaoHistoricoRoutes);
-router.use('/filial', filialRoutes);
-router.use('/usuario', usuarioRoutes);
-router.use('/termogerado', termoGeradoRoutes);
-router.use('/termotemplate', termoTemplateRoutes);
-router.use('/termo', termoRoutes);
-router.use('/termostatus', termoStatusRoutes);
-router.use('/termotipo', termoTipoRoutes);
+// === Definição das rotas ===
+
+// Referências (valores fixos ou auxiliares)
+router.use('/referencia/equipamento-status', equipamentoStatusRoutes);
+router.use('/referencia/termo-status', termoStatusRoutes);
+router.use('/referencia/termo-tipo', termoTipoRoutes);
+router.use('/referencia/movimentacao-acao', movimentacaoAcaoRoutes);
+router.use('/referencia/filiais', filialRoutes);
+
+// PDF (ações e templates)
+router.use('/pdf/termos/gerados', termoGeradoRoutes);
+router.use('/pdf/termos/templates', termoTemplateRoutes);
+
+// Rotas principais
+router.use('/usuarios', usuarioRoutes);
+router.use('/equipamentos', equipamentoRoutes);
+router.use('/categorias', categoriaRoutes);
+router.use('/modelos', modeloRoutes);
+router.use('/movimentacoes/historico', movimentacaoHistoricoRoutes);
+router.use('/termos', termoRoutes);
 
 
 module.exports = router;
