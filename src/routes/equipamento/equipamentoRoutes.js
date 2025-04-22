@@ -2,24 +2,23 @@ const express = require('express');
 const router = express.Router();
 const equipamentoController = require('../../controllers/equipamento/equipamentoController');
 const {
+    autenticacao,
+    verificarPermissao,
     validarIds,
     validarQueryParamsEquipamento
 } = require('../../middlewares');
+const ROLES = require('../../constants/roles');
 
+router.use(autenticacao);
 
-// Rotas get
-router.get('/', equipamentoController.listar);
-router.get('/filtros', validarQueryParamsEquipamento, equipamentoController.buscarPorFiltros);
-router.get('/:id', validarIds, equipamentoController.buscarPorId);
+// === Rotas de leitura (GET) - permitidas para user, admin e dev
+router.get('/', verificarPermissao(ROLES.USUARIO, ROLES.ADMIN, ROLES.DEV), equipamentoController.listar);
+router.get('/filtros', verificarPermissao(ROLES.USUARIO, ROLES.ADMIN, ROLES.DEV), validarQueryParamsEquipamento, equipamentoController.buscarPorFiltros);
+router.get('/:id', validarIds, verificarPermissao(ROLES.USUARIO, ROLES.ADMIN, ROLES.DEV), equipamentoController.buscarPorId);
 
-// Rotas post
-router.post('/', equipamentoController.criar);
-
-// Rotas put
-router.put('/:id', validarIds, equipamentoController.atualizar);
-
-// Rotas delete
-router.delete('/:id', validarIds, equipamentoController.remover);
-
+// === Rotas de escrita (POST, PUT, DELETE) - restritas a admin e dev
+router.post('/', verificarPermissao(ROLES.ADMIN, ROLES.DEV), equipamentoController.criar);
+router.put('/:id', validarIds, verificarPermissao(ROLES.ADMIN, ROLES.DEV), equipamentoController.atualizar);
+router.delete('/:id', validarIds, verificarPermissao(ROLES.ADMIN, ROLES.DEV), equipamentoController.remover);
 
 module.exports = router;
