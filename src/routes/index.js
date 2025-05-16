@@ -4,6 +4,9 @@ const router = express.Router();
 
 // === Importação das rotas ===
 
+// Autenticação
+const authRoutes = require('./auth/authRoutes')
+
 // Equipamento
 const categoriaRoutes = require('./equipamento/categoriaRoutes');
 const equipamentoRoutes = require('./equipamento/equipamentoRoutes');
@@ -42,6 +45,7 @@ router.use('/pdf/termos/gerados', termoGeradoRoutes);
 router.use('/pdf/termos/templates', termoTemplateRoutes);
 
 // Rotas principais
+router.use('/auth', authRoutes);
 router.use('/usuarios', usuarioRoutes);
 router.use('/equipamentos', equipamentoRoutes);
 router.use('/categorias', categoriaRoutes);
