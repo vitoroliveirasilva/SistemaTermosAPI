@@ -21,11 +21,23 @@ class ValidatedService extends BaseService {
 
     async #validarUnicidade(dados, id = null) {
         const errosValidacao = await this.validadorUnicidade(dados, id);
-        if (errosValidacao.length > 0) {
+
+        if (Array.isArray(errosValidacao) && errosValidacao.length > 0) {
+            const camposValidos = errosValidacao
+                .filter(e => e && e.campo)
+                .map(e => e.campo);
+
+            const camposStr = camposValidos.join(', ');
+            const prefixo = camposValidos.length > 1 ? 'nos campos' : 'no campo';
+            const mensagem =
+                camposValidos.length > 0
+                    ? `Erro de unicidade ${prefixo}: ${camposStr}`
+                    : 'Erro de unicidade: dados duplicados.';
+
             throw {
                 status: 400,
-                message: errosValidacao.map(e => e.message).join(', '),
-                errors: errosValidacao
+                message: mensagem,
+                erros: errosValidacao
             };
         }
     }
