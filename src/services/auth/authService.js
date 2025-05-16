@@ -59,10 +59,18 @@ class AuthService extends BaseService {
         throw { status: 400, message: 'Refresh token não fornecido.' };
       }
 
-      await this.repository.removerPorToken(refreshToken);
+      const removidos = await this.repository.removerPorToken(refreshToken);
+
+      if (!removidos) {
+        throw { status: 400, message: 'Refresh token não encontrado ou já revogado.' };
+      }
+
+      return;
     } catch (error) {
       console.error('[AuthService] Erro ao fazer logout:', error);
-      throw { status: 500, message: 'Erro interno ao fazer logout.', error };
+      throw error.status
+        ? error
+        : { status: 500, message: 'Erro interno ao fazer logout.', error: error.message };
     }
   }
 
