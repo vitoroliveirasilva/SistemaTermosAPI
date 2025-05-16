@@ -14,21 +14,21 @@ function verificarPermissao(...permissoesPermitidas) {
             });
         }
 
-        const role = String(req.usuario.role || '').toLowerCase();
+        const papel = String(req.usuario.papel || '').toLowerCase();
 
-        if (!rolesValidos.includes(role)) {
+        if (!rolesValidos.includes(papel)) {
             return res.status(403).json({
-                mensagem: `Não é reconhecido: ${role}`
+                mensagem: `Papel não reconhecido: ${papel}`
             });
         }
 
         const autorizado = permissoesPermitidas
             .map(p => p.toLowerCase())
-            .includes(role);
+            .includes(papel);
 
         if (!autorizado) {
             return res.status(403).json({
-                mensagem: `Permissão negada para: ${role}`
+                mensagem: `Permissão negada para: ${papel}`
             });
         }
 
