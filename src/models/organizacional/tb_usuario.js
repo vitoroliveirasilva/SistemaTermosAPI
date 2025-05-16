@@ -1,7 +1,4 @@
-const {
-  DataTypes,
-  Op
-} = require('sequelize');
+const { DataTypes, Op } = require('sequelize');
 const sequelize = require('../../config/database');
 
 const Usuario = sequelize.define('Usuario', {
@@ -51,20 +48,32 @@ const Usuario = sequelize.define('Usuario', {
 }, {
   tableName: 'tb_usuario',
   timestamps: false,
+
+  // 🔐 Aplica filtro e oculta senha por padrão
   defaultScope: {
-    attributes: {
-      exclude: ['senha']
-    }, // Remove a senha por padrão
+    attributes: { exclude: ['senha'] },
     where: {
       status: {
         [Op.not]: 'inativo'
       }
-    } // Exclui usuários inativos das buscas
+    }
   },
+
+  // 🔓 Permite sobrescrever escopo para autenticação
   scopes: {
     withPassword: {
-      attributes: {}
-    }, // Para buscar a senha quando necessário
+      attributes: {},   // Inclui todos os campos (inclusive senha)
+      where: {}         // Remove filtro de status
+    },
+    todos: {
+      where: {}         // Filtro livre sem status
+    },
+    inativos: {
+      where: { status: 'inativo' }
+    },
+    ativos: {
+      where: { status: 'ativo' }
+    }
   }
 });
 
