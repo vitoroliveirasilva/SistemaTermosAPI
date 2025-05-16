@@ -3,6 +3,9 @@ const sequelize = require('../config/database');
 
 // === Importação dos models ===
 
+// Autenticação
+const RefreshToken = require('./auth/tb_refreshToken');
+
 // Equipamentos
 const Categoria = require('./equipamento/tb_categoria');
 const Equipamento = require('./equipamento/tb_equipamento');
@@ -35,6 +38,14 @@ Usuario.belongsTo(Filial, {
 });
 Filial.hasMany(Usuario, {
   foreignKey: 'filial_id'
+});
+
+// Usuários e RefreshTokens
+RefreshToken.belongsTo(Usuario, {
+  foreignKey: 'usuario_id'
+});
+Usuario.hasMany(RefreshToken, {
+  foreignKey: 'usuario_id'
 });
 
 // Equipamentos e Modelos
@@ -156,6 +167,7 @@ const models = {
   MovimentacaoAcao,
   TermoTemplate,
   TermoGerado,
+  RefreshToken,
 };
 
 
