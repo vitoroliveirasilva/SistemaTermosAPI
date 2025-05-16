@@ -15,8 +15,9 @@ class RefreshTokenRepository extends BaseRepository {
 
   async removerPorToken(token) {
     if (!token || typeof token !== 'string') {
-      throw new Error('Token inválido para remoção.');
+      throw { status: 400, message: 'Token inválido para remoção.' };
     }
+
     return await this.model.destroy({ where: { token } });
   }
 
