@@ -4,6 +4,11 @@ const { validarDados } = require('./validacaoSchema');
 const { validarUnicidadeGenerica } = require('./validacaoUnicidadeGenerica');
 
 
+// Autenticação
+const { gerarAccessToken } = require('./auth/tokenUtil');
+const { gerarRefreshToken } = require('./auth/tokenUtil');
+
+
 // === Validações por entidade ===
 
 // Equipamento
@@ -33,6 +38,8 @@ module.exports = {
   validarId,
   validarDados,
   validarUnicidadeGenerica,
+  gerarAccessToken,
+  gerarRefreshToken,
   validarUnicidadeCategoria,
   validarUnicidadeEquipamento,
   validarUnicidadeEquipamentoStatus,
