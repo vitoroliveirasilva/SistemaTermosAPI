@@ -1,7 +1,7 @@
 const ServiceComValidacao = require('../validacaoService');
 const tipoTermoRepository = require('../../repositories/termo/termoTipoRepository');
 const {
-    validarUnicidadeTipoTermo
+    validarUnicidadeTermoTipo
 } = require('../../utils');
 
-module.exports = new ServiceComValidacao(tipoTermoRepository, 'Tipo', validarUnicidadeTipoTermo);
+module.exports = new ServiceComValidacao(tipoTermoRepository, 'Tipo', validarUnicidadeTermoTipo);
