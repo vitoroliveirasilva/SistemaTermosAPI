@@ -1,7 +1,7 @@
 const ServiceComValidacao = require('../validacaoService');
 const statusTermoRepository = require('../../repositories/termo/termoStatusRepository');
 const {
-    validarUnicidadeStatusTermo
+    validarUnicidadeTermoStatus
 } = require('../../utils');
 
-module.exports = new ServiceComValidacao(statusTermoRepository, 'Status', validarUnicidadeStatusTermo);
+module.exports = new ServiceComValidacao(statusTermoRepository, 'Status', validarUnicidadeTermoStatus);
