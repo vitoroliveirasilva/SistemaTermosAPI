@@ -1,13 +1,13 @@
 const tipoTermoRepository = require('../../repositories/termo/termoTipoRepository');
 const {
-    tipoTermoSchema
+    termoTipoSchema
 } = require('../../validations');
 const {
     validarUnicidadeGenerica
 } = require('../validacaoUnicidadeGenerica');
 
 async function validarUnicidadeTermoTipo(dados, id = null) {
-    return await validarUnicidadeGenerica(dados, tipoTermoSchema, tipoTermoRepository, ['nome'], id);
+    return await validarUnicidadeGenerica(dados, termoTipoSchema, tipoTermoRepository, ['nome'], id);
 }
 
 module.exports = {
