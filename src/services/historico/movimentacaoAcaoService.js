@@ -1,7 +1,7 @@
 const ServiceComValidacao = require('../validacaoService');
 const acaoMovimentacaoRepository = require('../../repositories/historico/movimentacaoAcaoRepository');
 const {
-    validarUnicidadeAcaoMovimentacao
+    validarUnicidadeMovimentacaoAcao
 } = require('../../utils');
 
-module.exports = new ServiceComValidacao(acaoMovimentacaoRepository, 'AcaoMovimentacao', validarUnicidadeAcaoMovimentacao);
+module.exports = new ServiceComValidacao(acaoMovimentacaoRepository, 'AcaoMovimentacao', validarUnicidadeMovimentacaoAcao);
